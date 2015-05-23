@@ -8,6 +8,7 @@
 /joe/+3                     : find joe move cursor 3 lines down
 /^joe.*fred.*bill/          : find joe AND fred AND Bill (Joe at start of line)
 /^[A-J]/                    : search for lines beginning with one or more A-J
+	RAR: wording
 /begin\_.*end               : search over possible multiple lines
 /fred\_s*joe/               : any whitespace including newline [C]
 /fred\|joe                  : Search for FRED OR JOE
@@ -15,8 +16,10 @@
 /\<fred\>/                  : search for fred but not alfred or frederick [C]
 /\<\d\d\d\d\>               : Search for exactly 4 digit numbers
 /\D\d\d\d\d\D               : Search for exactly 4 digit numbers
+	RAR: not beginning or end of line
 /\<\d\{4}\>                 : same thing
 /\([^0-9]\|^\)%.*%          : Search for absence of a digit or beginning of line
+	RAR: don't understand
 " finding empty lines
 /^\n\{3}                    : find 3 empty lines
 /^str.*\nstr                : find 2 successive lines starting with str
@@ -32,31 +35,41 @@
 /<\zs[^>]*\ze>              : search for tag contents, ignoring chevrons
 " zero-width :h /\@=
 /<\@<=[^>]*>\@=             : search for tag contents, ignoring chevrons
+	RAR: don't understand
 /<\@<=\_[^>]*>\@=           : search for tags across possible multiple lines
+	RAR: don't understand
 " searching over multiple lines \_ means including newline
 /<!--\_p\{-}-->                   : search for multiple line comments
 /fred\_s*joe/                     : any whitespace including newline *C*
 /bugs\(\_.\)*bunny                : bugs followed by bunny anywhere in file
+	RAR: () not needed
 :h \_                             : help
 " search for declaration of subroutine/function under cursor
 :nmap gx yiw/^\(sub\<bar>function\)\s\+<C-R>"<CR>
 " multiple file search
 :bufdo /searchstr/                : use :rewind to recommence search
+	RAR: misleading
 " multiple file search better but cheating
 :bufdo %s/searchstr/&/gic   : say n and then a to stop
+	RAR: ctrl-c => no replacement in last file
 " How to search for a URL without backslashing
 ?http://www.vim.org/        : (first) search BACKWARDS!!! clever huh!
 " Specify what you are NOT searching for (vowels)
 /\c\v([^aeiou]&\a){4}       : search for 4 consecutive consonants
 /\%>20l\%<30lgoat           : Search for goat between lines 20 and 30 [N]
 /^.\{-}home.\{-}\zshome/e   : match only the 2nd occurence in a line of "home" [N]
+	RAR: use \1
 :%s/home.\{-}\zshome/alone  : Substitute only the occurrence of home in any line [N]
+	RAR: ^second occurrence
 " find str but not on lines containing tongue
+	RAR: wording
 ^\(.*tongue.*\)\@!.*nose.*$
 \v^((tongue)@!.)*nose((tongue)@!.)*$
 .*nose.*\&^\%(\%(tongue\)\@!.\)*$ 
+	RAR: missing / search syntax
 :v/tongue/s/nose/&/gic
 'a,'bs/extrascost//gc       : trick: restrict search to between markers (answer n) [N]
+	RAR: answer n -- meaning?
 "----------------------------------------
 " *best-substitution*
 :%s/fred/joe/igc            : general substitute command
@@ -69,6 +82,7 @@
 :%s= \+$==                  : Same thing
 :%s#\s*\r\?$##              : Clean both trailing spaces AND DOS returns
 :%s#\s*\r*$##               : same thing
+	RAR: no point in confusing search delimiters
 " deleting empty lines
 :%s/^\n\{3}//               : delete blocks of 3 empty lines
 :%s/^\n\+/\r/               : compressing empty lines
@@ -80,10 +94,12 @@
 %s/</\r&/g                  : simple split of html/xml/soap  [N]
 :%s#<[^/]#\r&#gic           : simple split of html/xml/soap  but not closing tag [N]
 :%s#<[^/]#\r&#gi            : parse on open xml tag [N]
+	RAR: dupe except for confirmation
 :%s#\[\d\+\]#\r&#g          : parse on numbered array elements [1] [N]
 ggVGgJ                      : rejoin XML without extra spaces [N]
 " VIM Power Substitute
 :'a,'bg/fred/s/dick/joe/igc : VERY USEFUL
+	RAR: no explanation
 " duplicating columns
 :%s= [^ ]\+$=&&=            : duplicate end column
 :%s= \f\+$=&&=              : Dupicate filename
@@ -96,9 +112,11 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 :%s/^\(.*\)\(\n\1\)\+$/\1/  : delete multiple duplicate lines [N]
 " non-greedy matching \{-}
 :%s/^.\{-}pdf/new.pdf/      : delete to 1st occurence of pdf only (non-greedy)
+	RAR: not the first, but first on each line
 %s#^.\{-}\([0-9]\{3,4\}serial\)#\1#gic : delete up to 123serial or 1234serial [N]
 " use of optional atom \?
 :%s#\<[zy]\?tbl_[a-z_]\+\>#\L&#gc : lowercase with optional leading characters
+	RAR: split examples?
 " over possibly many lines
 :%s/<!--\_.\{-}-->//        : delete possibly multi-line comments
 :help /\{-}                 : help non-greedy
@@ -111,6 +129,7 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 :%s/a/but/gie|:update|:next : then use @: to repeat
 " ORing
 :%s/goat\|cow/sheep/gc      : ORing (must break pipe)
+	RAR: escape
 :'a,'bs#\[\|\]##g           : remove [] from lines between markers a and b [N]
 :%s/\v(.*\n){5}/&\r         : insert a blank line every 5 lines [N]
 " Calling a VIM function
@@ -127,10 +146,12 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 :nmap ,z :redir @*<Bar>sil exec 'g@<\(input\<Bar>select\<Bar>textarea\<Bar>/\=form\)\>@p'<Bar>redir END<CR>
 " substitute string in column 30 [N]
 :%s/^\(.\{30\}\)xx/\1yy/
+	RAR: \%c
 " decrement numbers by 3
 :%s/\d\+/\=(submatch(0)-3)/
 " increment numbers by 6 on certain lines only
 :g/loc\|function/s/\d/\=submatch(0)+6/
+	RAR: keep
 " better
 :%s#txtdev\zs\d#\=submatch(0)+1#g
 :h /\zs
@@ -143,16 +164,19 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 :let i=10 | 'a,'bg/Abc/s/xx\zsyy\ze/\=i/ |let i=i+1 # convert xxyy to xx11,xx12,xx13
 " find replacement text, put in memory, then use \zs to simplify substitute
 :%s/"\([^.]\+\).*\zsxx/\1/
+	RAR: wtf?
 " Pull word under cursor into LHS of a substitute
 :nmap <leader>z :%s#\<<c-r>=expand("<cword>")<cr>\>#
 " Pull Visually Highlighted text into LHS of a substitute
 :vmap <leader>z :<C-U>%s/\<<c-r>*\>/
+	RAR: broken in my config
 " substitute singular or plural
 :'a,'bs/bucket\(s\)*/bowl\1/gic   [N]
 ----------------------------------------
 " all following performing similar task, substitute within substitution
 " Multiple single character substitution in a portion of line only
 :%s,\(all/.*\)\@<=/,_,g     : replace all / with _ AFTER "all/"
+	RAR: use a different word to all
 " Same thing
 :s#all/\zs.*#\=substitute(submatch(0), '/', '_', 'g')#
 " Substitute by splitting line, then re-joining
@@ -162,20 +186,25 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 ----------------------------------------
 " *best-global* command 
 :g/gladiolli/#              : display with line numbers (YOU WANT THIS!)
+	RAR: spelling
 :g/fred.*joe.*dick/         : display all lines fred,joe & dick
 :g/\<fred\>/                : display all lines fred but not freddy
 :g/^\s*$/d                  : delete all blank lines
 :g!/^dd/d                   : delete lines not containing string
 :v/^dd/d                    : delete lines not containing string
 :g/joe/,/fred/d             : not line based (very powerfull)
+	RAR: powerful
 :g/fred/,/joe/j             : Join Lines [N]
 :g/-------/.-10,.d          : Delete string & 10 previous lines
 :g/{/ ,/}/- s/\n\+/\r/g     : Delete empty lines but only between {...}
+	RAR: g/{/,/}/-s/\d\+//
 :v/\S/d                     : Delete empty lines (and blank lines ie whitespace)
+	RAR: keep
 :v/./,/./-j                 : compress empty lines
 :g/^$/,/./-j                : compress empty lines
 :g/<input\|<form/p          : ORing
 :g/^/put_                   : double space file (pu = put)
+	RAR: explain _ black hole register
 :g/^/m0                     : Reverse file (m = move)
 :g/^/m$                     : No effect! [N]
 :'a,'bg/^/m'b               : Reverse a section a to b
@@ -195,6 +224,7 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 " incrementing numbers (type <c-a> as 5 characters)
 :.,$g/^\d/exe "norm! \<c-a>": increment numbers
 :'a,'bg/\d\+/norm! ^A       : increment numbers
+	RAR: (Ctrl-A)
 " storing glob results (note must use APPEND) you need to empty reg a first with qaq. 
 "save results to a register/paste buffer
 :g/fred/y A                 : append all lines fred to register a
@@ -202,13 +232,18 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 :let @a=''|g/Barratt/y A |:let @*=@a
 " filter lines to a file (file must already exist)
 :'a,'bg/^Error/ . w >> errors.txt
+	RAR: keep
 " duplicate every line in a file wrap a print '' around each duplicate
 :g/./yank|put|-1s/'/"/g|s/.*/Print '&'/
+	RAR: too complicated, don't explain s/'/"/
+	RAR: s/RE/X&X/ simpler
 " replace string with contents of a file, -d deletes the "mark"
 :g/^MARK$/r tmp.txt | -d
+	RAR: keep
 " display prettily
 :g/<pattern>/z#.5           : display with context
 :g/<pattern>/z#.5|echo "=========="  : display beautifully
+	RAR: keep cmap <expr>?
 " Combining g// with normal mode commands
 :g/|/norm 2f|r*                      : replace 2nd | with a star
 "send output of previous global command to a new window
@@ -224,9 +259,11 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 "----------------------------------------
 " create a new file for each line of file eg 1.txt,2.txt,3,txt etc
 :g/^/exe ".w ".line(".").".txt"
+	RAR: keep
 "----------------------------------------
 " chain an external command
 :.g/^/ exe ".!sed 's/N/X/'" | s/I/Q/    [N]
+	RAR: need example of a command that's not easily achieved in vim!
 "----------------------------------------
 " Operate until string found [N]
 d/fred/                                :delete until fred
@@ -288,6 +325,7 @@ endif
 "VISUAL MODE (easy to add other HTML Tags)
 :vmap sb "zdi<b><C-R>z</b><ESC>  : wrap <b></b> around VISUALLY selected Text
 :vmap st "zdi<?= <C-R>z ?><ESC>  : wrap <?=   ?> around VISUALLY selected Text
+	RAR: overwrites "z
 ----------------------------------------
 "vim 7 tabs
 vim -p fred.php joe.php             : open files in tabs
@@ -296,6 +334,7 @@ vim -p fred.php joe.php             : open files in tabs
 :close                              : close a tab but leave the buffer *N*
 " vim 7 forcing use of tabs from .vimrc
 :nnoremap gf <C-W>gf
+	RAR: keep
 :cab      e  tabe
 :tab sball                           : retab all files in buffer (repair) [N]
 ----------------------------------------
@@ -311,6 +350,7 @@ vim -p fred.php joe.php             : open files in tabs
 :args *.php                     : open list of files (you need this!)
 :lcd %:p:h                      : change to directory of current file
 :cd :h                      : change to directory of current file [N]
+	RAR: formatting
 :autocmd BufEnter * lcd %:p:h   : change to directory of current file automatically (put in _vimrc)
 ----------------------------------------
 " Changing Case
@@ -338,6 +378,7 @@ ggVGg?                          : rot13 whole file
 ggg?G                           : rot13 whole file (quicker for large file)
 :8 | normal VGg?                : rot13 from line 8
 :normal 10GVGg?                 : rot13 from line 8
+	RAR: line 8/10?
 <C-A>,<C-X>                     : increment,decrement number under cursor
                                   win32 users must remap CNTRL-A
 <C-R>=5*5                       : insert 25 into text (mini-calculator)
@@ -346,18 +387,21 @@ ggg?G                           : rot13 whole file (quicker for large file)
 :h 42            : also http://www.google.com/search?q=42
 :h holy-grail
 :h!
+	RAR: thank you :-)
 ----------------------------------------
 " disguise text (watch out) [N]
 ggVGg?                          : rot13 whole file (toggles)
 :set rl!                        : reverse lines right to left (toggles)
 :g/^/m0                         : reverse lines top to bottom (toggles)
 :%s/\(\<.\{-}\>\)/\=join(reverse(split(submatch(1), '.\zs')), '')/g   : reverse all text *N*
+	RAR: s/all text/each word/
 ----------------------------------------
 " History, Markers & moving about (what Vim Remembers) [C]
 '.               : jump to last modification line (SUPER)
 `.               : jump to exact spot in last modification line
 g;               : cycle thru recent changes (oldest first)
 g,               : reverse direction 
+	RAR: keep
 :changes
 :h changelist    : help for above
 <C-O>            : retrace your movements in file (starting from most recent)
@@ -392,17 +436,23 @@ set wak=no       : :h winaltkeys
 "display RGB colour under the cursor eg #445588
 :nmap <leader>c :hi Normal guibg=#<c-r>=expand("<cword>")<cr><cr>
 map <f2> /price only\\|versus/ :in a map need to backslash the \
+	RAR: missing ^:
 " type table,,, to get <table></table>       ### Cool ###
 imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>kA
+	RAR: missing ^:
 " list current mappings of all your function keys
 :for i in range(1, 12) | execute("map <F".i.">") | endfor   [N]
 " for your .vimrc
 :cab ,f :for i in range(1, 12) \| execute("map <F".i.">") \| endfor
+	RAR: colon not needed
+	RAR: dangerous expands anywhere command line matches ,f
 "chain commands in abbreviation
 cabbrev vrep tabe class.inc \| tabe report.php   ## chain commands [N]
+	RAR: missing ^:
 ----------------------------------------
 " Simple PHP debugging display all variables yanked into register a
 iab phpdb exit("<hr>Debug <C-R>a  ");
+	RAR: missing ^:
 ----------------------------------------
 " Using a register as a map (preload registers in .vimrc)
 :let @m=":'a,'bs/"
@@ -412,6 +462,7 @@ iab phpdb exit("<hr>Debug <C-R>a  ");
 "ayy@a           : execute "Vim command" in a text file
 yy@"             : same thing using unnamed register
 u@.              : execute command JUST typed in
+	RAR: wtf?
 "ddw             : store what you delete in register d [N]
 "ccaw            : store what you change in register c [N]
 ----------------------------------------
@@ -426,10 +477,12 @@ u@.              : execute command JUST typed in
 :'a,'b!sort -u   : use an external program to filter content
 !1} sort -u      : sorts paragraph (note normal mode!!)
 :g/^$/;/^$/-1!sort : Sort each block (note the crucial ;)
+	RAR: keep
 " Sorting with internal sort
 :sort /.*\%2v/   : sort all lines on second column [N]
 " number lines  (linux or cygwin only)
 :new | r!nl #                  [N]
+	RAR: copy file into new window and number lines
 ----------------------------------------
 " Multiple Files Management (Essential)
 :bn              : goto next buffer
@@ -441,6 +494,7 @@ u@.              : execute command JUST typed in
 :badd file.c     : file from buffer list
 :b3              : go to buffer 3 [C]
 :b main          : go to buffer with main in name eg main.c (ultra)
+	RAR: keep
 :sav php.html    : Save current file as php.html and "move" to php.html
 :sav! %<.bak     : Save Current file to alternative extension (old way)
 :sav! %:r.cfm    : Save Current file to alternative extension
@@ -462,6 +516,7 @@ u@.              : execute command JUST typed in
 " Quick jumping between splits
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
+	RAR: missing ^:
 ----------------------------------------
 " Recording (BEST Feature of ALL)
 qq  # record to q
@@ -476,6 +531,7 @@ qQ@qq                             : Make an existing recording q recursive [N]
 <ctrl-R>q                         :display contents of register q (insert mode)
 " you can now see recording contents, edit as required
 "qdd                              :put changed contacts back into q
+	RAR: s/contacts/contents/
 @q                                :execute recording/register q
 " Operating a Recording on a Visual BLOCK (blockwise)
 1) define recording/register
@@ -489,6 +545,7 @@ V}
 ----------------------------------------
 "combining a recording with a map (to end up in command mode)
 "here we operate on a file with a recording, then move to the next file [N]
+	RAR: s/"/" /
 :nnoremap ] @q:update<bar>bd
 ----------------------------------------
 " Visual is the newest and usually the most intuitive editing mode
@@ -533,6 +590,7 @@ das                                   : delete a sentence
 :set shiftwidth=3                     : for shift/tabbing
 :set vb t_vb=".                       : set silent (no beep)
 :set browsedir=buffer                 : Maki GUI File Open use current directory
+	RAR: s/Maki/Make/
 ----------------------------------------
 " launching Win IE
 :nmap ,f :update<CR>:silent !start c:\progra~1\intern~1\iexplore.exe file://%:p<CR>
@@ -541,6 +599,8 @@ das                                   : delete a sentence
 " FTPing from VIM
 cmap ,r  :Nread ftp://209.51.134.122/public_html/index.html
 cmap ,w  :Nwrite ftp://209.51.134.122/public_html/index.html
+	RAR: missing ^:
+	RAR: don't need to be mappings
 gvim ftp://www.somedomain.com/index.html # uses netrw.vim
 ----------------------------------------
 " appending to registers (use CAPITAL)
@@ -550,9 +610,11 @@ gvim ftp://www.somedomain.com/index.html # uses netrw.vim
 "A5yy
 ----------------------------------------
 [I     : show lines matching word under cursor <cword> (super)
+	RAR: keep
 ----------------------------------------
 " Conventional Shifting/Indenting
 :'a,'b>>
+	RAR: >> is a double indentation -- intentional?
 " visual shifting (builtin-repeat)
 :vnoremap < <gv
 :vnoremap > >gv
@@ -562,6 +624,7 @@ gvim ftp://www.somedomain.com/index.html # uses netrw.vim
 " also
 >% and <%
 ==                            : index current line same as line above [N]
+	RAR: s/index/indent
 ----------------------------------------
 " Redirection & Paste register *
 :redir @*                    : redirect commands to paste buffer
@@ -577,6 +640,7 @@ gvim ftp://www.somedomain.com/index.html # uses netrw.vim
 " filter non-printable characters from the paste buffer
 " useful when pasting from some gui application
 :nmap <leader>p :let @* = substitute(@*,'[^[:print:]]','','g')<cr>"*p
+	RAR: keep
 :set paste                    : prevent vim from formatting pasted in text *N*
 ----------------------------------------
 " Re-Formatting text
@@ -596,6 +660,7 @@ Vgq                          : current line
 :silent bufdo !zip proj.zip %:p   : zip all current files
 ----------------------------------------
 " Command line tricks
+	RAR: vim/gvim/gvim.exe pick one
 gvim -h                    : help
 ls | gvim -                : edit a stream!!
 cat xx | gvim - -c "v/^\d\d\|^[3-9]/d " : filter a stream
@@ -603,6 +668,7 @@ gvim -o file1 file2        : open into a horizontal split (file1 on top, file2 o
 gvim -O file1 file2        : open into a vertical split (side by side,for comparing code) [N]
 " execute one command after opening file
 gvim.exe -c "/main" joe.c  : Open joe.c & jump to "main"
+	RAR: vim joe.c +/main
 " execute multiple command on a single file
 vim -c "%s/ABC/DEF/ge | update" file1.c
 " execute multiple command on a group of files
@@ -612,6 +678,7 @@ vim -c "argdo /begin/+1,/end/-1g/^/d | update" *.c
 " Automate editing of a file (Ex commands in convert.vim)
 vim -s "convert.vim" file.c
 "load VIM without .vimrc and plugins (clean VIM) e.g. for HUGE files
+	RAR: ^"
 gvim -u NONE -U NONE -N
 " Access paste buffer contents (put in a script/batch file)
 gvim -c 'normal ggdG"*p' c:/aaa/xp
@@ -626,6 +693,7 @@ gvim -c 's/^/\=@*/|hardcopy!|q!'
 :copen
 ----------------------------------------
 " GVIM Difference Function (Brilliant)
+	RAR: not just Gvim, vim too
 gvim -d file1 file2        : vimdiff (compare differences)
 dp                         : "put" difference under cursor to other file
 do                         : "get" difference under cursor from other file
@@ -644,6 +712,7 @@ In regular expressions you must backslash ( (group)
 In regular expressions you must backslash { (count)
 /fred\+/                   : matches fred/freddy but not free
 /\(fred\)\{2,3}/           : note what you have to break
+	RAR: s/break/escape/
 ----------------------------------------
 " \v or very magic (usually) reduces backslashing
 /codes\(\n\|\s\)*where  : normal regexp
@@ -663,6 +732,8 @@ In regular expressions you must backslash { (count)
 :reg 12a         : display content of registers 1,2 & a [N]
 "5p              : retrieve 5th "ring" 
 "1p....          : retrieve numeric registers one by one
+	RAR: in reverse order
+	RAR: keep
 :let @y='yy@"'   : pre-loading registers (put in .vimrc)
 qqq              : empty register "q"
 qaq              : empty register "a"
@@ -672,6 +743,7 @@ qaq              : empty register "a"
 ----------------------------------------
 " manipulating registers
 :let @a=@_              : clear register a
+	RAR: keep
 :let @a=""              : clear register a
 :let @a=@"              : Save unnamed register [N]
 :let @*=@a              : copy register a to paste buffer
@@ -699,10 +771,13 @@ qaq              : empty register "a"
 <C-[>, <C-T>            : Move back & Forth in HELP History
 gvim -h                 : VIM Command Line Help
 :cabbrev h tab help     : open help in a tab [N]
+	RAR: check
 ----------------------------------------
 " where was an option set
 :scriptnames            : list all plugins, _vimrcs loaded (super)
+	RAR: keep
 :verbose set history?   : reveals value of history and where set
+	RAR: really?
 :function               : list functions
 :func SearchCompl       : List particular function
 ----------------------------------------
@@ -715,6 +790,7 @@ gvim -h                 : VIM Command Line Help
 " running file thru an external program (eg php)
 map   <f9>   :update<CR>:!c:/php/php.exe %<CR>
 map   <f2>   :update<CR>:!perl -c %<CR>
+	RAR: missing ^:
 ----------------------------------------
 " capturing output of current script in a separate buffer
 :new | r!perl #                   : opens new buffer,read other buffer
@@ -744,10 +820,13 @@ i<c-r>/
 ----------------------------------------
 " more completions
 <C-X><C-F>                        :insert name of a file in current directory
+	RAR: check
+	RAR: or in path?
 ----------------------------------------
 " Substituting a Visual area
 " select visual area as usual (:h visual) then type :s/Emacs/Vim/ etc
 :'<,'>s/Emacs/Vim/g               : REMEMBER you dont type the '<.'>
+	RAR: typo s/./,/
 gv                                : Re-select the previous visual area (ULTRA)
 ----------------------------------------
 " inserting line number into file
@@ -766,8 +845,10 @@ gv                                : Re-select the previous visual area (ULTRA)
 qqmnYP`n^Aq                       : in recording q repeat with @q
 " increment existing numbers to end of file (type <c-a> as 5 characters)
 :.,$g/^\d/exe "normal! \<c-a>"
+	RAR: dupe
 " advanced incrementing
 http://vim.sourceforge.net/tip_view.php?tip_id=150
+	RAR: 404
 ----------------------------------------
 " *advanced incrementing* (really useful)
 " put following in _vimrc
@@ -775,6 +856,7 @@ let g:I=0
 function! INC(increment)
 let g:I =g:I + a:increment
 return g:I
+	RAR: indent
 endfunction
 " eg create list starting from 223 incrementing by 5 between markers a,b
 :let I=223
@@ -792,8 +874,10 @@ unmap =                           : get the original vim command on a mapped key
 <HOME><END>                       : beginning/end of line
 <C-LEFTARROW><C-RIGHTARROW>       : jump one word backwards/forwards
 <C-X><C-E>,<C-X><C-Y>             : scroll while staying put in insert
+	RAR: keep
 ----------------------------------------
 #encryption (use with care: DON'T FORGET your KEY)
+	RAR: ^"
 :X                                : you will be prompted for a key
 :h :X
 ----------------------------------------
@@ -811,6 +895,7 @@ function! SaveWord()
    exe ':!echo '.@0.' >> word.txt'
 endfunction
 map ,p :call SaveWord()
+	RAR: ^:
 ----------------------------------------
 " function to delete duplicate lines
 function! Del()
@@ -824,17 +909,20 @@ endfunction
 " Digraphs (non alpha-numerics)
 :digraphs                         : display table
 :h dig                            : help
-i<C-K>e'                          : enters é
-i<C-V>233                         : enters é (Unix)
-i<C-Q>233                         : enters é (Win32)
+i<C-K>e'                          : enters Ã©
+i<C-V>233                         : enters Ã© (Unix)
+i<C-Q>233                         : enters Ã© (Win32)
 ga                                : View hex value of any character
 #Deleting non-ascii characters (some invisible)
+	RAR: ^"
 :%s/[\x00-\x1f\x80-\xff]/ /g      : type this as you see it
 :%s/[<C-V>128-<C-V>255]//gi       : where you have to type the Control-V
 :%s/[€-ÿ]//gi                     : Should see a black square & a dotted y
+	RAR: /black square/Euro symbol/ ?
 :%s/[<C-V>128-<C-V>255<C-V>01-<C-V>31]//gi : All pesky non-asciis
 :exec "norm /[\x00-\x1f\x80-\xff]/"        : same thing
 #Pull a non-ascii character onto search bar
+	RAR: ^"
 yl/<C-R>"                         :
 /[^a-zA-Z0-9_[:space:][:punct:]]  : search for all non-ascii
 ----------------------------------------
@@ -885,6 +973,7 @@ gvim -S                           : Reload all files (loads Session.vim) [C]
 gvim -S MySession.vim             : Reload all files from named session [C]
 ----------------------------------------
 #tags (jumping to subroutines/functions)
+	RAR: ^"
 taglist.vim                       : popular plugin
 :Tlist                            : display Tags (list of functions)
 <C-]>                             : jump to function under cursor
@@ -920,6 +1009,7 @@ zfG      : fold everything after this line [N]
 ----------------------------------------
 " How to paste "normal vim commands" w/o entering insert mode
 :norm qqy$jq
+	RAR: wtf?
 ----------------------------------------
 " manipulating file names
 :h filename-modifiers             : help
@@ -962,6 +1052,8 @@ g<C-G>                                 # counts words
 " reproduce previous line word by word
 imap ]  @@@<ESC>hhkyWjl?@@@<CR>P/@@@<CR>3s
 nmap ] i@@@<ESC>hhkyWjl?@@@<CR>P/@@@<CR>3s
+	RAR: wtf?
+	RAR: ^:
 " Programming keys depending on file type
 :autocmd bufenter *.tex map <F1> :!latex %<CR>
 :autocmd bufenter *.tex map <F2> :!xdvi -hush %<.dvi&<CR>
@@ -984,11 +1076,13 @@ autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
      \   exe "normal! g`\"" |
      \ endif
+	RAR: keep
 ----------------------------------------
 " store text that is to be changed or deleted in register a
 "act<                                 :  Change Till < [N]
 ----------------------------------------
 "installing/getting latest version of vim on Linux (replace tiny-vim) [N]
+	RAR: ^" 
 yum install vim-common vim-enhanced vim-minimal
 ----------------------------------------
 # using gVIM with Cygwin on a Windows PC
