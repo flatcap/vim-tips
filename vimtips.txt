@@ -69,7 +69,7 @@
 	RAR: missing / search syntax
 :v/tongue/s/nose/&/gic
 'a,'bs/extrascost//gc       : trick: restrict search to between markers (answer n) [N]
-	RAR: answer n -- meaning?
+	RAR: answer n -- meaning? - don't DO substitute
 "----------------------------------------
 " *best-substitution*
 :%s/fred/joe/igc            : general substitute command
@@ -626,6 +626,7 @@ gvim ftp://www.somedomain.com/index.html # uses netrw.vim
 >% and <%
 ==                            : index current line same as line above [N]
 	RAR: s/index/indent
+	RAR: keep
 ----------------------------------------
 " Redirection & Paste register *
 :redir @*                    : redirect commands to paste buffer
@@ -1012,7 +1013,7 @@ zfG      : fold everything after this line [N]
 ----------------------------------------
 " How to paste "normal vim commands" w/o entering insert mode
 :norm qqy$jq
-	RAR: wtf?
+	RAR: s/paste/run/ ?
 ----------------------------------------
 " manipulating file names
 :h filename-modifiers             : help
