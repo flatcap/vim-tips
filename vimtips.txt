@@ -820,12 +820,12 @@ i<c-r>/
 ----------------------------------------
 " more completions
 <C-X><C-F>                        :insert name of a file in current directory
-	RAR: check
-	RAR: or in path?
+	RAR: keep
 ----------------------------------------
 " Substituting a Visual area
 " select visual area as usual (:h visual) then type :s/Emacs/Vim/ etc
 :'<,'>s/Emacs/Vim/g               : REMEMBER you dont type the '<.'>
+	RAR: typo s/dont/don't/
 	RAR: typo s/./,/
 gv                                : Re-select the previous visual area (ULTRA)
 ----------------------------------------
