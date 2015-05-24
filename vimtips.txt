@@ -224,7 +224,7 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 " incrementing numbers (type <c-a> as 5 characters)
 :.,$g/^\d/exe "norm! \<c-a>": increment numbers
 :'a,'bg/\d\+/norm! ^A       : increment numbers
-	RAR: (Ctrl-A)
+	RAR: (Ctrl-V,Ctrl-A)
 " storing glob results (note must use APPEND) you need to empty reg a first with qaq. 
 "save results to a register/paste buffer
 :g/fred/y A                 : append all lines fred to register a
@@ -560,6 +560,7 @@ V%                              : visualise what you match
 V}J                             : Join Visual block (great)
 V}gJ                            : Join Visual block w/o adding spaces
 `[v`]                           : Highlight last insert
+	RAR: wtf?
 :%s/\%Vold/new/g                : Do a substitute on last visual area [N]
 ----------------------------------------
 " Delete 8th and 9th characters of 10 successive lines [C]
@@ -849,6 +850,8 @@ qqmnYP`n^Aq                       : in recording q repeat with @q
 " advanced incrementing
 http://vim.sourceforge.net/tip_view.php?tip_id=150
 	RAR: 404
+	RAR: http://vim.wikia.com/wiki/VimTip150
+	RAR: http://vim.wikia.com/wiki/Generating_a_column_of_increasing_numbers
 ----------------------------------------
 " *advanced incrementing* (really useful)
 " put following in _vimrc
