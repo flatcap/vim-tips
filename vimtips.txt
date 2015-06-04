@@ -34,14 +34,14 @@
 /<\@<=[^>]*>\@=             : search for tag contents, ignoring chevrons
 /<\@<=\_[^>]*>\@=           : search for tags across possible multiple lines
 " searching over multiple lines \_ means including newline
-/<!--\_p\{-}-->                   : search for multiple line comments
-/fred\_s*joe/                     : any whitespace including newline *C*
-/bugs\(\_.\)*bunny                : bugs followed by bunny anywhere in file
-:h \_                             : help
+/<!--\_p\{-}-->             : search for multiple line comments
+/fred\_s*joe/               : any whitespace including newline *C*
+/bugs\(\_.\)*bunny          : bugs followed by bunny anywhere in file
+:h \_                       : help
 " search for declaration of subroutine/function under cursor
 :nmap gx yiw/^\(sub\<bar>function\)\s\+<C-R>"<CR>
 " multiple file search
-:bufdo /searchstr/                : use :rewind to recommence search
+:bufdo /searchstr/          : use :rewind to recommence search
 " multiple file search better but cheating
 :bufdo %s/searchstr/&/gic   : say n and then a to stop
 " How to search for a URL without backslashing
@@ -89,7 +89,7 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 :%s= \f\+$=&&=              : Dupicate filename
 :%s= \S\+$=&&               : usually the same
 " memory
-:%s#example#& = &#gic        : duplicate entire matched string [N]
+:%s#example#& = &#gic       : duplicate entire matched string [N]
 :%s#.*\(tbl_\w\+\).*#\1#    : extract list of all strings tbl_* from text  [NC]
 :s/\(.*\):\(.*\)/\2 : \1/   : reverse fields separated by :
 :%s/^\(.*\)\n\1$/\1/        : delete duplicate lines
@@ -210,7 +210,7 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 :g/<pattern>/z#.5           : display with context
 :g/<pattern>/z#.5|echo "=========="  : display beautifully
 " Combining g// with normal mode commands
-:g/|/norm 2f|r*                      : replace 2nd | with a star
+:g/|/norm 2f|r*             : replace 2nd | with a star
 " send output of previous global command to a new window
 :nmap <F3>  :redir @a<CR>:g//<CR>:redir END<CR>:new<CR>:put! a<CR><CR>
 ----------------------------------------
@@ -290,26 +290,26 @@ endif
 :vmap st "zdi<?= <C-R>z ?><ESC>  : wrap <?=   ?> around VISUALLY selected Text
 ----------------------------------------
 " vim 7 tabs
-vim -p fred.php joe.php             : open files in tabs
-:tabe fred.php                      : open fred.php in a new tab
-:tab ball                           : tab open files
-:close                              : close a tab but leave the buffer *N*
+vim -p fred.php joe.php     : open files in tabs
+:tabe fred.php              : open fred.php in a new tab
+:tab ball                   : tab open files
+:close                      : close a tab but leave the buffer *N*
 " vim 7 forcing use of tabs from .vimrc
 :nnoremap gf <C-W>gf
 :cab      e  tabe
-:tab sball                           : retab all files in buffer (repair) [N]
+:tab sball                  : retab all files in buffer (repair) [N]
 ----------------------------------------
 " Exploring
-:e .                            : file explorer
-:Exp(lore)                      : file explorer note capital Ex
-:Sex(plore)                     : file explorer in split window
-:browse e                       : windows style browser
-:ls                             : list of buffers
-:cd ..                          : move to parent directory
-:args                           : list of files
-:pwd                            : Print Working Directory (current directory) [N]
-:args *.php                     : open list of files (you need this!)
-:lcd %:p:h                      : change to directory of current file
+:e .                        : file explorer
+:Exp(lore)                  : file explorer note capital Ex
+:Sex(plore)                 : file explorer in split window
+:browse e                   : windows style browser
+:ls                         : list of buffers
+:cd ..                      : move to parent directory
+:args                       : list of files
+:pwd                        : Print Working Directory (current directory) [N]
+:args *.php                 : open list of files (you need this!)
+:lcd %:p:h                  : change to directory of current file
 :cd :h                      : change to directory of current file [N]
 :autocmd BufEnter * lcd %:p:h   : change to directory of current file automatically (put in _vimrc)
 ----------------------------------------
@@ -348,9 +348,9 @@ ggg?G                           : rot13 whole file (quicker for large file)
 :h!
 ----------------------------------------
 " disguise text (watch out) [N]
-ggVGg?                          : rot13 whole file (toggles)
-:set rl!                        : reverse lines right to left (toggles)
-:g/^/m0                         : reverse lines top to bottom (toggles)
+ggVGg?                      : rot13 whole file (toggles)
+:set rl!                    : reverse lines right to left (toggles)
+:g/^/m0                     : reverse lines top to bottom (toggles)
 :%s/\(\<.\{-}\>\)/\=join(reverse(split(submatch(1), '.\zs')), '')/g   : reverse all text *N*
 ----------------------------------------
 " History, Markers & moving about (what Vim Remembers) [C]
@@ -492,17 +492,17 @@ V}
 ----------------------------------------
 " Visual is the newest and usually the most intuitive editing mode
 " Visual basics
-v                               : enter visual mode
-V                               : visual mode whole line
-<C-V>                           : enter VISUAL BLOCKWISE mode (remap on Windows to say C-Q *C*
-gv                              : reselect last visual area (ultra)
-o                               : navigate visual area
-"*y or "+y                      : yank visual area into paste buffer  [C]
-V%                              : visualise what you match
-V}J                             : Join Visual block (great)
-V}gJ                            : Join Visual block w/o adding spaces
-`[v`]                           : Highlight last insert
-:%s/\%Vold/new/g                : Do a substitute on last visual area [N]
+v                           : enter visual mode
+V                           : visual mode whole line
+<C-V>                       : enter VISUAL BLOCKWISE mode (remap on Windows to say C-Q *C*
+gv                          : reselect last visual area (ultra)
+o                           : navigate visual area
+"*y or "+y                  : yank visual area into paste buffer  [C]
+V%                          : visualise what you match
+V}J                         : Join Visual block (great)
+V}gJ                        : Join Visual block w/o adding spaces
+`[v`]                       : Highlight last insert
+:%s/\%Vold/new/g            : Do a substitute on last visual area [N]
 ----------------------------------------
 " Delete 8th and 9th characters of 10 successive lines [C]
 08l<c-v>10j2ld  (use Control Q on win32) [C]
@@ -518,12 +518,12 @@ Pick the first block: ctrl-v move y
 Pick the second block: ctrl-v move P <esc>
 ----------------------------------------
 " text objects :h text-objects                                     [C]
-daW                                   : delete contiguous non whitespace
-di<   yi<  ci<                        : Delete/Yank/Change HTML tag contents
-da<   ya<  ca<                        : Delete/Yank/Change whole HTML tag
-dat   dit                             : Delete HTML tag pair
-diB   daB                             : Empty a function {}
-das                                   : delete a sentence
+daW                         : delete contiguous non whitespace
+di<   yi<  ci<              : Delete/Yank/Change HTML tag contents
+da<   ya<  ca<              : Delete/Yank/Change whole HTML tag
+dat   dit                   : Delete HTML tag pair
+diB   daB                   : Empty a function {}
+das                         : delete a sentence
 ----------------------------------------
 " _vimrc essentials
 :imap <TAB> <C-N>                     : set tab to complete [N]
@@ -560,38 +560,38 @@ vim ftp://www.somedomain.com/index.html # uses netrw.vim
 >a{
 " also
 >% and <%
-==                            : indent current line same as line above [N]
+==                          : indent current line same as line above [N]
 ----------------------------------------
 " Redirection & Paste register *
-:redir @*                    : redirect commands to paste buffer
-:redir END                   : end redirect
-:redir >> out.txt            : redirect to a file
+:redir @*                   : redirect commands to paste buffer
+:redir END                  : end redirect
+:redir >> out.txt           : redirect to a file
 " Working with Paste buffer
-"*yy                         : yank curent line to paste
-"*p                          : insert from paste buffer
+"*yy                        : yank curent line to paste
+"*p                         : insert from paste buffer
 " yank to paste buffer (ex mode)
-:'a,'by*                     : Yank range into paste
-:%y*                         : Yank whole buffer into paste
-:.y*                         : Yank Current line to paster
+:'a,'by*                    : Yank range into paste
+:%y*                        : Yank whole buffer into paste
+:.y*                        : Yank Current line to paster
 " filter non-printable characters from the paste buffer
 " useful when pasting from some gui application
 :nmap <leader>p :let @* = substitute(@*,'[^[:print:]]','','g')<cr>"*p
-:set paste                    : prevent vim from formatting pasted in text *N*
+:set paste                  : prevent vim from formatting pasted in text *N*
 ----------------------------------------
 " Re-Formatting text
-gq}                          : Format a paragraph
-gqap                         : Format a paragraph
-ggVGgq                       : Reformat entire file
-Vgq                          : current line
+gq}                         : Format a paragraph
+gqap                        : Format a paragraph
+ggVGgq                      : Reformat entire file
+Vgq                         : current line
 " break lines at 70 chars, if possible after a ;
 :s/.\{,69\};\s*\|.\{,69\}\s\+/&\r/g
 ----------------------------------------
 " Operate command over multiple files
-:argdo %s/foo/bar/e          : operate on all files in :args
+:argdo %s/foo/bar/e         : operate on all files in :args
 :bufdo %s/foo/bar/e
 :windo %s/foo/bar/e
-:argdo exe '%!sort'|w!       : include an external command
-:bufdo exe "normal @q" | w   : perform a recording on open files
+:argdo exe '%!sort'|w!      : include an external command
+:bufdo exe "normal @q" | w  : perform a recording on open files
 :silent bufdo !zip proj.zip %:p   : zip all current files
 ----------------------------------------
 " Command line tricks
