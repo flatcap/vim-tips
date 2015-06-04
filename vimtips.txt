@@ -374,10 +374,10 @@ q:               : commandline history Window (puts you in full edit mode) (exit
 " Abbreviations & Maps
 " Maps are commands put onto keys, abbreviations expand typed text [N]
 " Following 4 maps enable text transfer between Vim sessions
-:map   <f7>   :'a,'bw! c:/aaa/x       : save text to file x
-:map   <f8>   :r c:/aaa/x             : retrieve text
-:map   <f11>  :.w! c:/aaa/xr<CR>      : store current line
-:map   <f12>  :r c:/aaa/xr<CR>        : retrieve current line
+:map <f7>  :'a,'bw! c:/aaa/x       : save text to file x
+:map <f8>  :r c:/aaa/x             : retrieve text
+:map <f11> :.w! c:/aaa/xr<CR>      : store current line
+:map <f12> :r c:/aaa/xr<CR>        : retrieve current line
 :ab php          : list of abbreviations beginning php
 :map ,           : list of maps beginning ,
 " allow use of F10 for mapping (win32)
@@ -712,8 +712,8 @@ vim -h                  : Vim Command Line Help
 :sav! $VIMRUNTIME/doc/vimtips.txt|:1,/^__BEGIN__/d|:/^__END__/,$d|:w!|:helptags $VIMRUNTIME/doc
 ----------------------------------------
 " running file thru an external program (eg php)
-:map   <f9>   :update<CR>:!c:/php/php.exe %<CR>
-:map   <f2>   :update<CR>:!perl -c %<CR>
+:map <f9> :update<CR>:!c:/php/php.exe %<CR>
+:map <f2> :update<CR>:!perl -c %<CR>
 ----------------------------------------
 " capturing output of current script in a separate buffer
 :new | r!perl #                   : opens new buffer,read other buffer
@@ -848,7 +848,7 @@ main_<C-X><C-F>                   : include NAME of file in text (insert mode)
 " swap two words
 :vnoremap <C-X> <Esc>`.``gvP``P
 " Swap word with next word
-nmap <silent> gw    "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<cr><c-o><c-l> [N]
+nmap <silent> gw "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<cr><c-o><c-l> [N]
 ----------------------------------------
 " Convert Text File to HTML
 :runtime! syntax/2html.vim        : convert txt to html
