@@ -52,9 +52,9 @@
 /^.\{-}home.\{-}\zshome/e   : match only the 2nd occurence in a line of "home" [N]
 :%s/home.\{-}\zshome/alone  : Substitute only the occurrence of home in any line [N]
 " find str but not on lines containing tongue
-^\(.*tongue.*\)\@!.*nose.*$
-\v^((tongue)@!.)*nose((tongue)@!.)*$
-.*nose.*\&^\%(\%(tongue\)\@!.\)*$
+/^\(.*tongue.*\)\@!.*nose.*$
+/\v^((tongue)@!.)*nose((tongue)@!.)*$
+/.*nose.*\&^\%(\%(tongue\)\@!.\)*$
 :v/tongue/s/nose/&/gic
 'a,'bs/extrascost//gc       : trick: restrict search to between markers (answer n) [N]
 ----------------------------------------
@@ -391,18 +391,18 @@ set wak=no       : :h winaltkeys
 <SILENT>         : No hanging shell window
 " display RGB colour under the cursor eg #445588
 :nmap <leader>c :hi Normal guibg=#<c-r>=expand("<cword>")<cr><cr>
-map <f2> /price only\\|versus/ :in a map need to backslash the \
+:map <f2> /price only\\|versus/ :in a map need to backslash the \
 " type table,,, to get <table></table>       ### Cool ###
-imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>kA
+:imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>kA
 " list current mappings of all your function keys
 :for i in range(1, 12) | execute("map <F".i.">") | endfor   [N]
 " for your .vimrc
 :cab ,f :for i in range(1, 12) \| execute("map <F".i.">") \| endfor
 " chain commands in abbreviation
-cabbrev vrep tabe class.inc \| tabe report.php   ## chain commands [N]
+:cabbrev vrep tabe class.inc \| tabe report.php   ## chain commands [N]
 ----------------------------------------
 " Simple PHP debugging display all variables yanked into register a
-iab phpdb exit("<hr>Debug <C-R>a  ");
+:iab phpdb exit("<hr>Debug <C-R>a  ");
 ----------------------------------------
 " Using a register as a map (preload registers in .vimrc)
 :let @m=":'a,'bs/"
@@ -460,8 +460,8 @@ u@.              : execute command JUST typed in
 :set hidden      : Allows to change buffer w/o saving current buffer
 ----------------------------------------
 " Quick jumping between splits
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
+:map <C-J> <C-W>j<C-W>_
+:map <C-K> <C-W>k<C-W>_
 ----------------------------------------
 " Recording (BEST Feature of ALL)
 qq  # record to q
@@ -539,8 +539,8 @@ das                                   : delete a sentence
 :nmap ,i :update<CR>: !start c:\progra~1\intern~1\iexplore.exe <cWORD><CR>
 ----------------------------------------
 " FTPing from VIM
-cmap ,r  :Nread ftp://209.51.134.122/public_html/index.html
-cmap ,w  :Nwrite ftp://209.51.134.122/public_html/index.html
+:cmap ,r  :Nread ftp://209.51.134.122/public_html/index.html
+:cmap ,w  :Nwrite ftp://209.51.134.122/public_html/index.html
 gvim ftp://www.somedomain.com/index.html # uses netrw.vim
 ----------------------------------------
 " appending to registers (use CAPITAL)
@@ -713,8 +713,8 @@ gvim -h                 : VIM Command Line Help
 :sav! $VIMRUNTIME/doc/vimtips.txt|:1,/^__BEGIN__/d|:/^__END__/,$d|:w!|:helptags $VIMRUNTIME/doc
 ----------------------------------------
 " running file thru an external program (eg php)
-map   <f9>   :update<CR>:!c:/php/php.exe %<CR>
-map   <f2>   :update<CR>:!perl -c %<CR>
+:map   <f9>   :update<CR>:!c:/php/php.exe %<CR>
+:map   <f2>   :update<CR>:!perl -c %<CR>
 ----------------------------------------
 " capturing output of current script in a separate buffer
 :new | r!perl #                   : opens new buffer,read other buffer
@@ -810,7 +810,7 @@ function! SaveWord()
    normal yiw
    exe ':!echo '.@0.' >> word.txt'
 endfunction
-map ,p :call SaveWord()
+:map ,p :call SaveWord()
 ----------------------------------------
 " function to delete duplicate lines
 function! Del()
@@ -960,8 +960,8 @@ g<C-G>                                 # counts words
 :hi def DoubleSpace guibg=#e0e0e0
 ----------------------------------------
 " reproduce previous line word by word
-imap ]  @@@<ESC>hhkyWjl?@@@<CR>P/@@@<CR>3s
-nmap ] i@@@<ESC>hhkyWjl?@@@<CR>P/@@@<CR>3s
+:imap ]  @@@<ESC>hhkyWjl?@@@<CR>P/@@@<CR>3s
+:nmap ] i@@@<ESC>hhkyWjl?@@@<CR>P/@@@<CR>3s
 " Programming keys depending on file type
 :autocmd bufenter *.tex map <F1> :!latex %<CR>
 :autocmd bufenter *.tex map <F2> :!xdvi -hush %<.dvi&<CR>
