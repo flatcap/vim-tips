@@ -229,22 +229,22 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 :.g/^/ exe ".!sed 's/N/X/'" | s/I/Q/    [N]
 ----------------------------------------
 " Operate until string found [N]
-d/fred/                                :delete until fred
-y/fred/                                :yank until fred
-c/fred/e                               :change until fred end
+d/fred/                                : delete until fred
+y/fred/                                : yank until fred
+c/fred/e                               : change until fred end
 v12|                                   : visualise/change/delete to column 12 [N]
 ----------------------------------------
 " Summary of editing repeats [N]
-.      last edit (magic dot)
-:&     last substitute
-:%&    last substitute every line
-:%&gic last substitute every line confirm
-g%     normal mode repeat last substitute
-g&     last substitute on all lines
-@@     last recording
-@:     last command-mode command
-:!!    last :! command
-:~     last substitute
+.                           : last edit (magic dot)
+:&                          : last substitute
+:%&                         : last substitute every line
+:%&gic                      : last substitute every line confirm
+g%                          : normal mode repeat last substitute
+g&                          : last substitute on all lines
+@@                          : last recording
+@:                          : last command-mode command
+:!!                         : last :! command
+:~                          : last substitute
 :help repeating
 ----------------------------------------
 " Summary of repeated searches
@@ -464,27 +464,26 @@ u@.              : execute command JUST typed in
 :map <C-K> <C-W>k<C-W>_
 ----------------------------------------
 " Recording (BEST Feature of ALL)
-qq  # record to q
-your complex series of commands
-q   # end recording
-@q to execute
-@@ to Repeat
-5@@ to Repeat 5 times
-qQ@qq                             : Make an existing recording q recursive [N]
+qq                          : record to q your complex series of commands
+q                           : end recording
+@q                          : to execute
+@@                          : to Repeat
+5@@                         : to Repeat 5 times
+qQ@qq                       : Make an existing recording q recursive [N]
 " editing a register/recording
-"qp                               :display contents of register q (normal mode)
-<ctrl-R>q                         :display contents of register q (insert mode)
+"qp                               : display contents of register q (normal mode)
+<ctrl-R>q                         : display contents of register q (insert mode)
 " you can now see recording contents, edit as required
-"qdd                              :put changed contents back into q
-@q                                :execute recording/register q
+"qdd                              : put changed contents back into q
+@q                                : execute recording/register q
 " Operating a Recording on a Visual Block (blockwise)
-1) define recording/register
+" 1) define recording/register
 qq:s/ to/ from/g^Mq
-2) Define Visual Block
+" 2) Define Visual Block
 V}
-3) hit : and the following appears
+" 3) hit : and the following appears
 :'<,'>
-4)Complete as follows
+" 4) Complete as follows
 :'<,'>norm @q
 ----------------------------------------
 " combining a recording with a map (to end up in command mode)
@@ -638,10 +637,10 @@ do                         : "get" difference under cursor from other file
 :windo diffthis
 ----------------------------------------
 " Vim traps
-In regular expressions you must backslash + (match 1 or more)
-In regular expressions you must backslash | (or)
-In regular expressions you must backslash ( (group)
-In regular expressions you must backslash { (count)
+" In regular expressions you must backslash + (match 1 or more)
+" In regular expressions you must backslash | (or)
+" In regular expressions you must backslash ( (group)
+" In regular expressions you must backslash { (count)
 /fred\+/                   : matches fred/freddy but not free
 /\(fred\)\{2,3}/           : note what you have to break
 ----------------------------------------
@@ -725,9 +724,9 @@ vim -h                  : Vim Command Line Help
 :new +put q|%!sort
 ----------------------------------------
 " Inserting DOS Carriage Returns
-:%s/$/\<C-V><C-M>&/g          :  that's what you type
-:%s/$/\<C-Q><C-M>&/g          :  for Win32
-:%s/$/\^M&/g                  :  what you'll see where ^M is ONE character
+:%s/$/\<C-V><C-M>&/g          : that's what you type
+:%s/$/\<C-Q><C-M>&/g          : for Win32
+:%s/$/\^M&/g                  : what you'll see where ^M is ONE character
 ----------------------------------------
 " automatically delete trailing Dos-returns,whitespace
 autocmd BufRead * silent! %s/[\r \t]\+$//
@@ -743,7 +742,7 @@ i<c-r>:
 i<c-r>/
 ----------------------------------------
 " more completions
-<C-X><C-F>                        :insert name of a file in current directory
+<C-X><C-F>                        : insert name of a file in current directory
 ----------------------------------------
 " Substituting a Visual area
 " select visual area as usual (:h visual) then type :s/Emacs/Vim/ etc
