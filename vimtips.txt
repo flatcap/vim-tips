@@ -207,7 +207,7 @@ ggVGgJ                      : rejoin XML without extra spaces                [N]
 " replace string with contents of a file, -d deletes the "MARK"
 :g/^MARK$/r tmp.txt | -d
 " display prettily
-:g/<pattern>/z#.5           : display with context
+:g/<pattern>/z#.5                    : display with context
 :g/<pattern>/z#.5|echo "=========="  : display beautifully
 " Combining g// with normal mode commands
 :g/|/norm 2f|r*             : replace 2nd | with a star
@@ -248,10 +248,10 @@ g&                          : last substitute on all lines
 :help repeating
 ----------------------------------------
 " Summary of repeated searches
-;      last f, t, F or T
-,      last f, t, F or T in opposite direction
-n      last / or ? search
-N      last / or ? search in opposite direction
+;                           : last f, t, F or T
+,                           : last f, t, F or T in opposite direction
+n                           : last / or ? search
+N                           : last / or ? search in opposite direction
 ----------------------------------------
 " *Absolutely-essential*
 ----------------------------------------
@@ -274,7 +274,7 @@ matchit.vim         : % now matches tags <tr><td><script> <?php etc
 " Make it easy to update/reload _vimrc
 :nmap ,s :source $VIM/_vimrc
 :nmap ,v :e $VIM/_vimrc
-:e $MYVIMRC         : edits your _vimrc whereever it might be                [N]
+:e $MYVIMRC                 : edits your _vimrc whereever it might be        [N]
 " How to have a variant in your .vimrc for different PCs                     [N]
 if $COMPUTERNAME == "NEWPC"
   ab mypc vista
@@ -343,7 +343,7 @@ ggg?G                           : rot13 whole file (quicker for large file)
 <C-R>=5*5                       : insert 25 into text (mini-calculator)
 ----------------------------------------
 " Make all other tips superfluous
-:h 42            : also http://www.google.com/search?q=42
+:h 42                       : also http://www.google.com/search?q=42
 :h holy-grail
 :h!
 ----------------------------------------
@@ -416,18 +416,18 @@ u@.                         : execute command JUST typed in
 "ccaw                       : store what you change in register c            [N]
 ----------------------------------------
 " Get output from other commands (requires external programs)
-:r!ls -R         : reads in output of ls
-:put=glob('**')  : same as above                                             [N]
-:r !grep "^ebay" file.txt  : grepping in content                             [N]
-:20,25 !rot13    : rot13 lines 20 to 25                                      [N]
-!!date           : same thing (but replaces/filters current line)
+:r!ls -R                    : reads in output of ls
+:put=glob('**')             : same as above                                  [N]
+:r !grep "^ebay" file.txt   : grepping in content                            [N]
+:20,25 !rot13               : rot13 lines 20 to 25                           [N]
+!!date                      : same thing (but replaces/filters current line)
 " Sorting with external sort
-:%!sort -u       : use an external program to filter content
-:'a,'b!sort -u   : use an external program to filter content
-!1} sort -u      : sorts paragraph (note normal mode!!)
-:g/^$/;/^$/-1!sort : Sort each block (note the crucial ;)
+:%!sort -u                  : use an external program to filter content
+:'a,'b!sort -u              : use an external program to filter content
+!1} sort -u                 : sorts paragraph (note normal mode!!)
+:g/^$/;/^$/-1!sort          : sort each block (note the crucial ;)
 " Sorting with internal sort
-:sort /.*\%2v/   : sort all lines on second column                           [N]
+:sort /.*\%2v/              : sort all lines on second column                [N]
 " number lines  (linux or cygwin only)
 :new | r!nl #                                                                [N]
 ----------------------------------------
@@ -505,7 +505,7 @@ V}gJ                        : Join Visual block w/o adding spaces
 :%s/\%Vold/new/g            : Do a substitute on last visual area            [N]
 ----------------------------------------
 " Delete 8th and 9th characters of 10 successive lines                       [C]
-08l<c-v>10j2ld  (use Control Q on win32)                                     [C]
+08l<c-v>10j2ld              : (use Control Q on win32)                       [C]
 ----------------------------------------
 " how to copy a set of columns using VISUAL BLOCK
 " visual block (AKA columnwise selection) (NOT BY ordinary v command)
@@ -706,7 +706,7 @@ vim -h                      : Vim Command Line Help
 :func SearchCompl           : List particular function
 ----------------------------------------
 " making your own Vim help
-:helptags /vim/vim64/doc  : rebuild all *.txt help files in /doc
+:helptags /vim/vim64/doc    : rebuild all *.txt help files in /doc
 :help add-local-help
 " save this page as a Vim Help File                                          [N]
 :sav! $VIMRUNTIME/doc/vimtips.txt|:1,/^__BEGIN__/d|:/^__END__/,$d|:w!|:helptags $VIMRUNTIME/doc
@@ -762,7 +762,7 @@ gv                          : Re-select the previous visual area (ULTRA)
 :'a,'b!perl -pne 'BEGIN{$a=223} substr($_,2,0)=$a++'
 " Produce a list of numbers
 " Type in number on line say 223 in an empty file
-qqmnYP`n^Aq                       : in recording q repeat with @q
+qqmnYP`n^Aq                 : in recording q repeat with @q
 " increment existing numbers to end of file (type <c-a> as 5 characters)
 :.,$g/^\d/exe "normal! \<c-a>"
 " advanced incrementing
