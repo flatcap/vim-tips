@@ -1,5 +1,5 @@
 *vimtips.txt*	For Vim version 7.3.
-------------------------------------------------------------------------------
+----------------------------------------
 " new items marked [N] , corrected items marked [C]
 " *best-searching*
 /joe/e                      : cursor set to End of match
@@ -57,7 +57,7 @@
 .*nose.*\&^\%(\%(tongue\)\@!.\)*$
 :v/tongue/s/nose/&/gic
 'a,'bs/extrascost//gc       : trick: restrict search to between markers (answer n) [N]
-"----------------------------------------
+----------------------------------------
 " *best-substitution*
 :%s/fred/joe/igc            : general substitute command
 :%s//joe/igc                : Substitute what you last searched for [N]
@@ -196,7 +196,7 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 :.,$g/^\d/exe "norm! \<c-a>": increment numbers
 :'a,'bg/\d\+/norm! ^A       : increment numbers
 " storing glob results (note must use APPEND) you need to empty reg a first with qaq.
-"save results to a register/paste buffer
+" save results to a register/paste buffer
 :g/fred/y A                 : append all lines fred to register a
 :g/fred/y A | :let @*=@a    : put into paste buffer
 :let @a=''|g/Barratt/y A |:let @*=@a
@@ -211,9 +211,9 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 :g/<pattern>/z#.5|echo "=========="  : display beautifully
 " Combining g// with normal mode commands
 :g/|/norm 2f|r*                      : replace 2nd | with a star
-"send output of previous global command to a new window
+" send output of previous global command to a new window
 :nmap <F3>  :redir @a<CR>:g//<CR>:redir END<CR>:new<CR>:put! a<CR><CR>
-"----------------------------------------
+----------------------------------------
 " *Best-Global-combined-with-substitute* (*power-editing*)
 :'a,'bg/fred/s/joe/susan/gic :  can use memory to extend matching
 :/fred/,/joe/s/fred/joe/gic :  non-line based (ultra)
@@ -221,19 +221,19 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 ----------------------------------------
 " Find fred before beginning search for joe
 :/fred/;/joe/-2,/sid/+3s/sally/alley/gIC
-"----------------------------------------
+----------------------------------------
 " create a new file for each line of file eg 1.txt,2.txt,3,txt etc
 :g/^/exe ".w ".line(".").".txt"
-"----------------------------------------
+----------------------------------------
 " chain an external command
 :.g/^/ exe ".!sed 's/N/X/'" | s/I/Q/    [N]
-"----------------------------------------
+----------------------------------------
 " Operate until string found [N]
 d/fred/                                :delete until fred
 y/fred/                                :yank until fred
 c/fred/e                               :change until fred end
 v12|                                   : visualise/change/delete to column 12 [N]
-"----------------------------------------
+----------------------------------------
 " Summary of editing repeats [N]
 .      last edit (magic dot)
 :&     last substitute
@@ -285,11 +285,11 @@ endif
 " splitting windows
 :vsplit other.php       # vertically split current file with other.php [N]
 ----------------------------------------
-"VISUAL MODE (easy to add other HTML Tags)
+" VISUAL MODE (easy to add other HTML Tags)
 :vmap sb "zdi<b><C-R>z</b><ESC>  : wrap <b></b> around VISUALLY selected Text
 :vmap st "zdi<?= <C-R>z ?><ESC>  : wrap <?=   ?> around VISUALLY selected Text
 ----------------------------------------
-"vim 7 tabs
+" vim 7 tabs
 vim -p fred.php joe.php             : open files in tabs
 :tabe fred.php                      : open fred.php in a new tab
 :tab ball                           : tab open files
@@ -389,7 +389,7 @@ set wak=no       : :h winaltkeys
 <BAR>            : | pipe
 <BACKSPACE>      : backspace
 <SILENT>         : No hanging shell window
-"display RGB colour under the cursor eg #445588
+" display RGB colour under the cursor eg #445588
 :nmap <leader>c :hi Normal guibg=#<c-r>=expand("<cword>")<cr><cr>
 map <f2> /price only\\|versus/ :in a map need to backslash the \
 " type table,,, to get <table></table>       ### Cool ###
@@ -398,7 +398,7 @@ imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>kA
 :for i in range(1, 12) | execute("map <F".i.">") | endfor   [N]
 " for your .vimrc
 :cab ,f :for i in range(1, 12) \| execute("map <F".i.">") \| endfor
-"chain commands in abbreviation
+" chain commands in abbreviation
 cabbrev vrep tabe class.inc \| tabe report.php   ## chain commands [N]
 ----------------------------------------
 " Simple PHP debugging display all variables yanked into register a
@@ -487,8 +487,8 @@ V}
 4)Complete as follows
 :'<,'>norm @q
 ----------------------------------------
-"combining a recording with a map (to end up in command mode)
-"here we operate on a file with a recording, then move to the next file [N]
+" combining a recording with a map (to end up in command mode)
+" here we operate on a file with a recording, then move to the next file [N]
 :nnoremap ] @q:update<bar>bd
 ----------------------------------------
 " Visual is the newest and usually the most intuitive editing mode
@@ -611,7 +611,7 @@ vim -c "argdo %s/ABC/DEF/ge | update" *.c
 vim -c "argdo /begin/+1,/end/-1g/^/d | update" *.c
 " Automate editing of a file (Ex commands in convert.vim)
 vim -s "convert.vim" file.c
-"load VIM without .vimrc and plugins (clean VIM) e.g. for HUGE files
+" load VIM without .vimrc and plugins (clean VIM) e.g. for HUGE files
 gvim -u NONE -U NONE -N
 " Access paste buffer contents (put in a script/batch file)
 gvim -c 'normal ggdG"*p' c:/aaa/xp
@@ -793,7 +793,7 @@ unmap =                           : get the original vim command on a mapped key
 <C-LEFTARROW><C-RIGHTARROW>       : jump one word backwards/forwards
 <C-X><C-E>,<C-X><C-Y>             : scroll while staying put in insert
 ----------------------------------------
-#encryption (use with care: DON'T FORGET your KEY)
+" encryption (use with care: DON'T FORGET your KEY)
 :X                                : you will be prompted for a key
 :h :X
 ----------------------------------------
@@ -828,13 +828,13 @@ i<C-K>e'                          : enters é
 i<C-V>233                         : enters é (Unix)
 i<C-Q>233                         : enters é (Win32)
 ga                                : View hex value of any character
-#Deleting non-ascii characters (some invisible)
+" Deleting non-ascii characters (some invisible)
 :%s/[\x00-\x1f\x80-\xff]/ /g      : type this as you see it
 :%s/[<C-V>128-<C-V>255]//gi       : where you have to type the Control-V
 :%s/[€-ÿ]//gi                     : Should see a black square & a dotted y
 :%s/[<C-V>128-<C-V>255<C-V>01-<C-V>31]//gi : All pesky non-asciis
 :exec "norm /[\x00-\x1f\x80-\xff]/"        : same thing
-#Pull a non-ascii character onto search bar
+" Pull a non-ascii character onto search bar
 yl/<C-R>"                         :
 /[^a-zA-Z0-9_[:space:][:punct:]]  : search for all non-ascii
 ----------------------------------------
@@ -867,7 +867,7 @@ nmap <silent> gw    "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<cr><c-o><c-l> [
 :colorscheme blue
 :colorscheme morning     : good fallback colorscheme *N*
 " Force HTML Syntax highlighting by using a modeline
-# vim:ft=html:
+" vim:ft=html:
 " Force syntax automatically (for a file with non-standard extension)
 au BufRead,BufNewFile */Content.IE?/* setfiletype html
 " make cursor standout against highlighted text for vim terminal (linux) [N]
@@ -884,7 +884,7 @@ gvim file1.c file2.c lib/lib.h lib/lib2.h : load files for "session"
 gvim -S                           : Reload all files (loads Session.vim) [C]
 gvim -S MySession.vim             : Reload all files from named session [C]
 ----------------------------------------
-#tags (jumping to subroutines/functions)
+" tags (jumping to subroutines/functions)
 taglist.vim                       : popular plugin
 :Tlist                            : display Tags (list of functions)
 <C-]>                             : jump to function under cursor
@@ -988,10 +988,10 @@ autocmd BufReadPost *
 " store text that is to be changed or deleted in register a
 "act<                                 :  Change Till < [N]
 ----------------------------------------
-"installing/getting latest version of vim on Linux (replace tiny-vim) [N]
+" installing/getting latest version of vim on Linux (replace tiny-vim) [N]
 yum install vim-common vim-enhanced vim-minimal
 ----------------------------------------
-# using gVIM with Cygwin on a Windows PC
+" using gVIM with Cygwin on a Windows PC
 if has('win32')
 source $VIMRUNTIME/mswin.vim
 behave mswin
