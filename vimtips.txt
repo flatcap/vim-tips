@@ -283,7 +283,7 @@ else
 endif
 ----------------------------------------
 " splitting windows
-:vsplit other.php       # vertically split current file with other.php [N]
+:vsplit other.php           : vertically split current file with other.php [N]
 ----------------------------------------
 " Visual mode (easy to add other HTML Tags)
 :vmap sb "zdi<b><C-R>z</b><ESC>  : wrap <b></b> around VISUALLY selected Text
@@ -948,11 +948,11 @@ $ vim
 :q!
 ----------------------------------------
 " count words/lines in a text file
-g<C-G>                                 # counts words
-:echo line("'b")-line("'a")            # count lines between markers a and b [N]
-:'a,'bs/^//n                           # count lines between markers a and b
-:'a,'bs/somestring//gn                 # count occurences of a string
-:s/,/,/gn                              # count commas in a line (csv/parameters)
+g<C-G>                      : counts words
+:echo line("'b")-line("'a") : count lines between markers a and b [N]
+:'a,'bs/^//n                : count lines between markers a and b
+:'a,'bs/somestring//gn      : count occurences of a string
+:s/,/,/gn                   : count commas in a line (csv/parameters)
 ----------------------------------------
 " example of setting your own highlighting
 :syn match DoubleSpace "  "
