@@ -277,9 +277,9 @@ matchit.vim         : % now matches tags <tr><td><script> <?php etc
 :e $MYVIMRC         : edits your _vimrc whereever it might be  [N]
 " How to have a variant in your .vimrc for different PCs [N]
 if $COMPUTERNAME == "NEWPC"
-ab mypc vista
+  ab mypc vista
 else
-ab mypc dell25
+  ab mypc dell25
 endif
 ----------------------------------------
 " splitting windows
@@ -772,8 +772,8 @@ http://vim.wikia.com/wiki/Generating_a_column_of_increasing_numbers
 " put following in _vimrc
 let g:I=0
 function! INC(increment)
-let g:I =g:I + a:increment
-return g:I
+  let g:I =g:I + a:increment
+  return g:I
 endfunction
 " eg create list starting from 223 incrementing by 5 between markers a,b
 :let I=223
@@ -806,16 +806,16 @@ amenu  Modeline.Insert\ a\ Vim\ modeline <Esc><Esc>ggOvim:ff=unix ts=4 ss=4<CR>v
 ----------------------------------------
 " A function to save word under cursor to a file
 function! SaveWord()
-   normal yiw
-   exe ':!echo '.@0.' >> word.txt'
+  normal yiw
+  exe ':!echo '.@0.' >> word.txt'
 endfunction
 :map ,p :call SaveWord()
 ----------------------------------------
 " function to delete duplicate lines
 function! Del()
- if getline(".") == getline(line(".") - 1)
-   norm dd
- endif
+  if getline(".") == getline(line(".") - 1)
+    norm dd
+  endif
 endfunction
 
 :g/^/ call Del()
@@ -895,8 +895,8 @@ taglist.vim                       : popular plugin
 :%s/\s\+$//ge
 " Highlight a particular csv column (put in .vimrc)
 function! CSVH(x)
-    execute 'match Keyword /^\([^,]*,\)\{'.a:x.'}\zs[^,]*/'
-    execute 'normal ^'.a:x.'f,'
+  execute 'match Keyword /^\([^,]*,\)\{'.a:x.'}\zs[^,]*/'
+  execute 'normal ^'.a:x.'f,'
 endfunction
 command! -nargs=1 Csv :call CSVH(<args>)
 " call with
@@ -980,9 +980,9 @@ Closing tag >>>
 ----------------------------------------
 " Return to last edit position (You want this!) [N]
 autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal! g`\"" |
+  \ endif
 ----------------------------------------
 " store text that is to be changed or deleted in register a
 "act<                                 :  Change Till < [N]
@@ -992,9 +992,9 @@ yum install vim-common vim-enhanced vim-minimal
 ----------------------------------------
 " using Vim with Cygwin on a Windows PC
 if has('win32')
-source $VIMRUNTIME/mswin.vim
+  source $VIMRUNTIME/mswin.vim
 behave mswin
-set shell=c:\\cygwin\\bin\\bash.exe shellcmdflag=-c shellxquote=\"
+  set shell=c:\\cygwin\\bin\\bash.exe shellcmdflag=-c shellxquote=\"
 endif
 ----------------------------------------
 " *Just Another Vim Hacker JAVH*
