@@ -215,9 +215,9 @@ ggVGgJ                      : rejoin XML without extra spaces                [N]
 :nmap <F3>  :redir @a<CR>:g//<CR>:redir END<CR>:new<CR>:put! a<CR><CR>
 ----------------------------------------
 " *Best-Global-combined-with-substitute* (*power-editing*)
-:'a,'bg/fred/s/joe/susan/gic :  can use memory to extend matching
-:/fred/,/joe/s/fred/joe/gic :  non-line based (ultra)
-:/biz/,/any/g/article/s/wheel/bucket/gic:  non-line based                    [N]
+:'a,'bg/fred/s/joe/susan/gic             : can use memory to extend matching
+:/fred/,/joe/s/fred/joe/gic              : non-line based (ultra)
+:/biz/,/any/g/article/s/wheel/bucket/gic : non-line based                    [N]
 ----------------------------------------
 " Find fred before beginning search for joe
 :/fred/;/joe/-2,/sid/+3s/sally/alley/gIC
@@ -540,7 +540,7 @@ das                         : delete a sentence
 " FTPing from Vim
 :cmap ,r  :Nread ftp://209.51.134.122/public_html/index.html
 :cmap ,w  :Nwrite ftp://209.51.134.122/public_html/index.html
-vim ftp://www.somedomain.com/index.html # uses netrw.vim
+vim ftp://www.somedomain.com/index.html : uses netrw.vim
 ----------------------------------------
 " appending to registers (use CAPITAL)
 " yank 5 lines into "a" then add a further 5
@@ -828,8 +828,8 @@ i<C-V>233                   : enters é (Unix)
 i<C-Q>233                   : enters é (Win32)
 ga                          : View hex value of any character
 " Deleting non-ascii characters (some invisible)
-:%s/[\x00-\x1f\x80-\xff]/ /g      : type this as you see it
-:%s/[<C-V>128-<C-V>255]//gi       : where you have to type the Control-V
+:%s/[\x00-\x1f\x80-\xff]/ /g         : type this as you see it
+:%s/[<C-V>128-<C-V>255]//gi          : where you have to type the Control-V
 :%s/[€-ÿ]//gi                     : Should see a black square & a dotted y
 :%s/[<C-V>128-<C-V>255<C-V>01-<C-V>31]//gi : All pesky non-asciis
 :exec "norm /[\x00-\x1f\x80-\xff]/"        : same thing
@@ -902,7 +902,7 @@ command! -nargs=1 Csv :call CSVH(<args>)
 " call with
 :Csv 5                      : highlight fifth column
 ----------------------------------------
-zf1G      : fold everything before this line                                 [N]
+zf1G                        : fold everything before this line               [N]
 " folding : hide sections to allow easier comparisons
 zf}                         : fold paragraph using motion
 v}zf                        : fold paragraph using visual
