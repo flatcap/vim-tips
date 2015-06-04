@@ -10,8 +10,8 @@
 /^[A-J]/                    : search for lines beginning with one or more A-J
 /begin\_.*end               : search over possible multiple lines
 /fred\_s*joe/               : any whitespace including newline [C]
-/fred\|joe                  : Search for FRED OR JOE
-/.*fred\&.*joe              : Search for FRED AND JOE in any ORDER!
+/fred\|joe                  : Search for fred OR joe
+/.*fred\&.*joe              : Search for fred AND joe in ANY ORDER!
 /\<fred\>/                  : search for fred but not alfred or frederick [C]
 /\<\d\d\d\d\>               : Search for exactly 4 digit numbers
 /\D\d\d\d\d\D               : Search for exactly 4 digit numbers
@@ -82,7 +82,7 @@
 :%s#<[^/]#\r&#gi            : parse on open xml tag [N]
 :%s#\[\d\+\]#\r&#g          : parse on numbered array elements [1] [N]
 ggVGgJ                      : rejoin XML without extra spaces [N]
-" VIM Power Substitute
+" Vim Power Substitute
 :'a,'bg/fred/s/dick/joe/igc : VERY USEFUL
 " duplicating columns
 :%s= [^ ]\+$=&&=            : duplicate end column
@@ -113,7 +113,7 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 :%s/goat\|cow/sheep/gc      : ORing (must break pipe)
 :'a,'bs#\[\|\]##g           : remove [] from lines between markers a and b [N]
 :%s/\v(.*\n){5}/&\r         : insert a blank line every 5 lines [N]
-" Calling a VIM function
+" Calling a Vim function
 :s/__date__/\=strftime("%c")/ : insert datestring
 :inoremap \zd <C-R>=strftime("%d%b%y")<CR>    : insert date eg 31Jan11 [N]
 " Working with Columns sub any str1 in col3
@@ -145,7 +145,7 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 :%s/"\([^.]\+\).*\zsxx/\1/
 " Pull word under cursor into LHS of a substitute
 :nmap <leader>z :%s#\<<c-r>=expand("<cword>")<cr>\>#
-" Pull Visually Highlighted text into LHS of a substitute
+" Pull visually highlighted text into LHS of a substitute
 :vmap <leader>z :<C-U>%s/\<<c-r>*\>/
 " substitute singular or plural
 :'a,'bs/bucket\(s\)*/bowl\1/gic   [N]
@@ -168,7 +168,7 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 :g!/^dd/d                   : delete lines not containing string
 :v/^dd/d                    : delete lines not containing string
 :g/joe/,/fred/d             : not line based (very powerful)
-:g/fred/,/joe/j             : Join Lines [N]
+:g/fred/,/joe/j             : Join lines [N]
 :g/-------/.-10,.d          : Delete string & 10 previous lines
 :g/{/ ,/}/- s/\n\+/\r/g     : Delete empty lines but only between {...}
 :v/\S/d                     : Delete empty lines (and blank lines ie whitespace)
@@ -204,7 +204,7 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 :'a,'bg/^Error/ . w >> errors.txt
 " duplicate every line in a file wrap a print '' around each duplicate
 :g/./yank|put|-1s/'/"/g|s/.*/Print '&'/
-" replace string with contents of a file, -d deletes the "mark"
+" replace string with contents of a file, -d deletes the "MARK"
 :g/^MARK$/r tmp.txt | -d
 " display prettily
 :g/<pattern>/z#.5           : display with context
@@ -271,7 +271,7 @@ matchit.vim         : % now matches tags <tr><td><script> <?php etc
 :h regexp<C-D>      : type control-D and get a list all help topics containing
                       regexp (plus use TAB to Step thru list)
 ----------------------------------------
-" MAKE IT EASY TO UPDATE/RELOAD _vimrc
+" Make it easy to update/reload _vimrc
 :nmap ,s :source $VIM/_vimrc
 :nmap ,v :e $VIM/_vimrc
 :e $MYVIMRC         : edits your _vimrc whereever it might be  [N]
@@ -285,7 +285,7 @@ endif
 " splitting windows
 :vsplit other.php       # vertically split current file with other.php [N]
 ----------------------------------------
-" VISUAL MODE (easy to add other HTML Tags)
+" Visual mode (easy to add other HTML Tags)
 :vmap sb "zdi<b><C-R>z</b><ESC>  : wrap <b></b> around VISUALLY selected Text
 :vmap st "zdi<?= <C-R>z ?><ESC>  : wrap <?=   ?> around VISUALLY selected Text
 ----------------------------------------
@@ -319,8 +319,8 @@ gUU                             : uppercase line
 Vu                              : lowercase line
 VU                              : uppercase line
 g~~                             : flip case line
-vEU                             : Upper Case Word
-vE~                             : Flip Case Word
+vEU                             : upper case word
+vE~                             : flip case word
 ggguG                           : lowercase entire file
 " Titlise Visually Selected Text (map for .vimrc)
 vmap ,c :s/\<\(.\)\(\k*\)\>/\u\1\L\2/g<CR>
@@ -339,7 +339,7 @@ ggg?G                           : rot13 whole file (quicker for large file)
 :8 | normal VGg?                : rot13 from line 8
 :normal 10GVGg?                 : rot13 from line 8
 <C-A>,<C-X>                     : increment,decrement number under cursor
-                                  win32 users must remap CNTRL-A
+                                  win32 users must remap CTRL-A
 <C-R>=5*5                       : insert 25 into text (mini-calculator)
 ----------------------------------------
 " Make all other tips superfluous
@@ -373,7 +373,7 @@ q:               : commandline history Window (puts you in full edit mode) (exit
 ----------------------------------------
 " Abbreviations & Maps
 " Maps are commands put onto keys, abbreviations expand typed text [N]
-" Following 4 maps enable text transfer between VIM sessions
+" Following 4 maps enable text transfer between Vim sessions
 :map   <f7>   :'a,'bw! c:/aaa/x       : save text to file x
 :map   <f8>   :r c:/aaa/x             : retrieve text
 :map   <f11>  :.w! c:/aaa/xr<CR>      : store current line
@@ -442,8 +442,8 @@ u@.              : execute command JUST typed in
 :b3              : go to buffer 3 [C]
 :b main          : go to buffer with main in name eg main.c (ultra)
 :sav php.html    : Save current file as php.html and "move" to php.html
-:sav! %<.bak     : Save Current file to alternative extension (old way)
-:sav! %:r.cfm    : Save Current file to alternative extension
+:sav! %<.bak     : Save current file to alternative extension (old way)
+:sav! %:r.cfm    : Save current file to alternative extension
 :sav %:s/fred/joe/           : do a substitute on file name
 :sav %:s/fred/joe/:r.bak2    : do a substitute on file name & ext.
 :!mv % %:r.bak   : rename current file (DOS use Rename or DEL)
@@ -477,10 +477,10 @@ qQ@qq                             : Make an existing recording q recursive [N]
 " you can now see recording contents, edit as required
 "qdd                              :put changed contents back into q
 @q                                :execute recording/register q
-" Operating a Recording on a Visual BLOCK (blockwise)
+" Operating a Recording on a Visual Block (blockwise)
 1) define recording/register
 qq:s/ to/ from/g^Mq
-2) Define Visual BLOCK
+2) Define Visual Block
 V}
 3) hit : and the following appears
 :'<,'>
@@ -538,7 +538,7 @@ das                                   : delete a sentence
 :nmap ,f :update<CR>:silent !start c:\progra~1\intern~1\iexplore.exe file://%:p<CR>
 :nmap ,i :update<CR>: !start c:\progra~1\intern~1\iexplore.exe <cWORD><CR>
 ----------------------------------------
-" FTPing from VIM
+" FTPing from Vim
 :cmap ,r  :Nread ftp://209.51.134.122/public_html/index.html
 :cmap ,w  :Nwrite ftp://209.51.134.122/public_html/index.html
 vim ftp://www.somedomain.com/index.html # uses netrw.vim
@@ -611,7 +611,7 @@ vim -c "argdo %s/ABC/DEF/ge | update" *.c
 vim -c "argdo /begin/+1,/end/-1g/^/d | update" *.c
 " Automate editing of a file (Ex commands in convert.vim)
 vim -s "convert.vim" file.c
-" load VIM without .vimrc and plugins (clean VIM) e.g. for HUGE files
+" load Vim without .vimrc and plugins (clean Vim) e.g. for HUGE files
 vim -u NONE -U NONE -N
 " Access paste buffer contents (put in a script/batch file)
 vim -c 'normal ggdG"*p' c:/aaa/xp
@@ -625,7 +625,7 @@ vim -c 's/^/\=@*/|hardcopy!|q!'
 :vimgrep /keywords/ *.php
 :copen
 ----------------------------------------
-" VIM Difference Function (Brilliant)
+" Vim Difference Function (Brilliant)
 vim -d file1 file2         : vimdiff (compare differences)
 dp                         : "put" difference under cursor to other file
 do                         : "get" difference under cursor from other file
@@ -680,7 +680,7 @@ qaq              : empty register "a"
 :let @*=@%              : copy current filename to paste buffer
 ----------------------------------------
 " help for help (USE TAB)
-:h quickref             : VIM Quick Reference Sheet (ultra)
+:h quickref             : Vim Quick Reference Sheet (ultra)
 :h tips                 : Vim's own Tips Help
 :h visual<C-D><tab>     : obtain  list of all visual help topics
                         : Then use tab to step thru them
@@ -694,10 +694,10 @@ qaq              : empty register "a"
 :h i_CTRL-R             : help for say <C-R> in insert mode
 :h c_CTRL-R             : help for say <C-R> in command mode
 :h v_CTRL-V             : visual mode
-:h tutor                : VIM Tutor
+:h tutor                : Vim Tutor
 <C-]>                   : jump to {keyword} under  cursor in help file [C]
-<C-[>, <C-T>            : Move back & Forth in HELP History
-vim -h                  : VIM Command Line Help
+<C-[>, <C-T>            : Move back & forth in HELP History
+vim -h                  : Vim Command Line Help
 :cabbrev h tab help     : open help in a tab [N]
 ----------------------------------------
 " where was an option set
@@ -706,10 +706,10 @@ vim -h                  : VIM Command Line Help
 :function               : list functions
 :func SearchCompl       : List particular function
 ----------------------------------------
-" making your own VIM help
+" making your own Vim help
 :helptags /vim/vim64/doc  : rebuild all *.txt help files in /doc
 :help add-local-help
-" save this page as a VIM Help File [N]
+" save this page as a Vim Help File [N]
 :sav! $VIMRUNTIME/doc/vimtips.txt|:1,/^__BEGIN__/d|:/^__END__/,$d|:w!|:helptags $VIMRUNTIME/doc
 ----------------------------------------
 " running file thru an external program (eg php)
@@ -755,7 +755,7 @@ gv                                : Re-select the previous visual area (ULTRA)
 :%s/^/\=strpart(line(".")."     ", 0, 5)
 :%s/^/\=line('.'). ' '
 ----------------------------------------
-" *numbering lines VIM way*
+" *numbering lines Vim way*
 :set number                       : show line numbers
 :map <F12> :set number!<CR>       : Show linenumbers flip-flop
 :%s/^/\=strpart(line('.')."        ",0,&ts)
@@ -803,7 +803,7 @@ unmap =                           : get the original vim command on a mapped key
 :h modeline
 ----------------------------------------
 " Creating your own GUI Toolbar entry
-amenu  Modeline.Insert\ a\ VIM\ modeline <Esc><Esc>ggOvim:ff=unix ts=4 ss=4<CR>vim60:fdm=marker<esc>gg
+amenu  Modeline.Insert\ a\ Vim\ modeline <Esc><Esc>ggOvim:ff=unix ts=4 ss=4<CR>vim60:fdm=marker<esc>gg
 ----------------------------------------
 " A function to save word under cursor to a file
 function! SaveWord()
@@ -855,7 +855,7 @@ nmap <silent> gw    "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<cr><c-o><c-l> [
 :runtime! syntax/2html.vim        : convert txt to html
 :h 2html
 ----------------------------------------
-" VIM has internal grep
+" Vim has internal grep
 :grep some_keyword *.c            : get list of all c-files containing keyword
 :cn                               : go to next occurrence
 ----------------------------------------
@@ -991,7 +991,7 @@ autocmd BufReadPost *
 " installing/getting latest version of vim on Linux (replace tiny-vim) [N]
 yum install vim-common vim-enhanced vim-minimal
 ----------------------------------------
-" using VIM with Cygwin on a Windows PC
+" using Vim with Cygwin on a Windows PC
 if has('win32')
 source $VIMRUNTIME/mswin.vim
 behave mswin
