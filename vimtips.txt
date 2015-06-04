@@ -1,4 +1,5 @@
 *vimtips.txt*	For Vim version 7.3.  
+	RAR: trailing space
 ------------------------------------------------------------------------------
 " new items marked [N] , corrected items marked [C]
 " *best-searching*
@@ -66,6 +67,7 @@
 ^\(.*tongue.*\)\@!.*nose.*$
 \v^((tongue)@!.)*nose((tongue)@!.)*$
 .*nose.*\&^\%(\%(tongue\)\@!.\)*$ 
+	RAR: trailing space
 	RAR: missing / search syntax
 :v/tongue/s/nose/&/gic
 'a,'bs/extrascost//gc       : trick: restrict search to between markers (answer n) [N]
@@ -90,6 +92,7 @@
 :%s#<\_.\{-1,}>##g          : delete html tags possibly multi-line (non-greedy)
 :%s#.*\(\d\+hours\).*#\1#   : Delete all but memorised string (\1) [N]
 " parse xml/soap 
+	RAR: trailing space
 %s#><\([^/]\)#>\r<\1#g      : split jumbled up XML file into one tag per line [N]
 %s/</\r&/g                  : simple split of html/xml/soap  [N]
 :%s#<[^/]#\r&#gic           : simple split of html/xml/soap  but not closing tag [N]
@@ -123,6 +126,7 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 " substitute using a register
 :s/fred/<c-r>a/g            : sub "fred" with contents of register "a"
 :s/fred/<c-r>asome_text<c-r>s/g  
+	RAR: trailing space
 :s/fred/\=@a/g              : better alternative as register not displayed (not *) [C]
 " multiple commands on one line
 :%s/\f\+\.gif\>/\r&\r/g | v/\.gif$/d | %s/gif/jpg/
@@ -140,6 +144,7 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 " Swapping first & last column (4 columns)
 :%s:\(\w\+\)\(.*\s\+\)\(\w\+\)$:\3\2\1:
 " format a mysql query 
+	RAR: trailing space
 :%s#\<from\>\|\<where\>\|\<left join\>\|\<\inner join\>#\r&#g
 " filter all form elements into paste register
 :redir @*|sil exec 'g#<\(input\|select\|textarea\|/\=form\)\>#p'|redir END
@@ -185,6 +190,7 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 :%s/.*/\='cp '.submatch(0).' all/'.substitute(submatch(0),'/','_','g')/
 ----------------------------------------
 " *best-global* command 
+	RAR: trailing space
 :g/gladiolli/#              : display with line numbers (YOU WANT THIS!)
 	RAR: spelling
 :g/fred.*joe.*dick/         : display all lines fred,joe & dick
@@ -215,6 +221,7 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 :g/\(^I[^^I]*\)\{80}/d      : delete all lines containing at least 80 tabs
 " perform a substitute on every other line
 :g/^/ if line('.')%2|s/^/zz / 
+	RAR: trailing space
 " match all lines containing "somestr" between markers a & b
 " copy after line containing "otherstr"
 :'a,'bg/somestr/co/otherstr/ : co(py) or mo(ve)
@@ -226,6 +233,7 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 :'a,'bg/\d\+/norm! ^A       : increment numbers
 	RAR: (Ctrl-V,Ctrl-A)
 " storing glob results (note must use APPEND) you need to empty reg a first with qaq. 
+	RAR: trailing space
 "save results to a register/paste buffer
 :g/fred/y A                 : append all lines fred to register a
 :g/fred/y A | :let @*=@a    : put into paste buffer
@@ -295,6 +303,7 @@ N      last / or ? search in opposite direction
 * # g* g#           : find word under cursor (<cword>) (forwards/backwards)
 %                   : match brackets {}[]()
 .                   : repeat last modification 
+	RAR: trailing space
 @:                  : repeat last : command (then @@)
 matchit.vim         : % now matches tags <tr><td><script> <?php etc
 <C-N><C-P>          : word completion in insert mode
@@ -401,6 +410,7 @@ ggVGg?                          : rot13 whole file (toggles)
 `.               : jump to exact spot in last modification line
 g;               : cycle thru recent changes (oldest first)
 g,               : reverse direction 
+	RAR: trailing space
 	RAR: keep
 :changes
 :h changelist    : help for above
@@ -420,6 +430,7 @@ q:               : commandline history Window (puts you in full edit mode) (exit
 " Following 4 maps enable text transfer between VIM sessions
 :map   <f7>   :'a,'bw! c:/aaa/x       : save text to file x
 :map   <f8>   :r c:/aaa/x             : retrieve text 
+	RAR: trailing space
 :map   <f11>  :.w! c:/aaa/xr<CR>      : store current line
 :map   <f12>  :r c:/aaa/xr<CR>        : retrieve current line
 :ab php          : list of abbreviations beginning php
@@ -706,6 +717,7 @@ do                         : "get" difference under cursor from other file
 :1,2yank a | 7,8yank b
 :tabedit | put a | vnew | put b
 :windo diffthis 
+	RAR: trailing space
 ----------------------------------------
 " Vim traps
 In regular expressions you must backslash + (match 1 or more)
@@ -733,6 +745,7 @@ In regular expressions you must backslash { (count)
 :reg a           : display content of register a
 :reg 12a         : display content of registers 1,2 & a [N]
 "5p              : retrieve 5th "ring" 
+	RAR: trailing space
 "1p....          : retrieve numeric registers one by one
 	RAR: in reverse order
 	RAR: keep
@@ -964,6 +977,7 @@ nmap <silent> gw    "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<cr><c-o><c-l> [
 au BufRead,BufNewFile */Content.IE?/* setfiletype html
 " make cursor standout against highlighted text for vim terminal (linux) [N]
 :highlight search term=reverse ctermbg=5  
+	RAR: trailing space
 ----------------------------------------
 :set noma (non modifiable)        : Prevents modifications
 :set ro (Read Only)               : Protect a file from unintentional writes
@@ -1063,6 +1077,7 @@ nmap ] i@@@<ESC>hhkyWjl?@@@<CR>P/@@@<CR>3s
 :autocmd bufenter *.tex map <F2> :!xdvi -hush %<.dvi&<CR>
 " allow yanking of php variables with their dollar [N]
 :autocmd bufenter *.php :set iskeyword+=\$ 
+	RAR: trailing space
 ----------------------------------------
 " reading Ms-Word documents, requires antiword (not docx)
 :autocmd BufReadPre *.doc set ro
@@ -1072,8 +1087,11 @@ nmap ] i@@@<ESC>hhkyWjl?@@@<CR>P/@@@<CR>3s
 " a folding method
 vim: filetype=help foldmethod=marker foldmarker=<<<,>>>
 A really big section closed with a tag <<< 
+	RAR: trailing space
 --- remember folds can be nested --- 
+	RAR: trailing space
 Closing tag >>> 
+	RAR: trailing space
 ----------------------------------------
 " Return to last edit position (You want this!) [N]
 autocmd BufReadPost *
