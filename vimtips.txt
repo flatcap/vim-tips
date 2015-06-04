@@ -868,7 +868,7 @@ nmap <silent> gw "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<cr><c-o><c-l> [N]
 " Force HTML Syntax highlighting by using a modeline
 " vim:ft=html:
 " Force syntax automatically (for a file with non-standard extension)
-au BufRead,BufNewFile */Content.IE?/* setfiletype html
+:au BufRead,BufNewFile */Content.IE?/* setfiletype html
 " make cursor standout against highlighted text for vim terminal (linux) [N]
 :highlight search term=reverse ctermbg=5
 ----------------------------------------
