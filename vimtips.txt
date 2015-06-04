@@ -27,7 +27,7 @@
 /^\([^,]*,\)\{8}
 " visual searching
 :vmap // y/<C-R>"<CR>       : search for visually highlighted text
-:vmap <silent> //    y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR> : with spec chars
+:vmap <silent> // y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR> : with spec chars
 " \zs and \ze regex delimiters :h /\zs
 /<\zs[^>]*\ze>              : search for tag contents, ignoring chevrons
 " zero-width :h /\@=
