@@ -161,13 +161,13 @@ ggVGgJ                      : rejoin XML without extra spaces [N]
 :%s/.*/\='cp '.submatch(0).' all/'.substitute(submatch(0),'/','_','g')/
 ----------------------------------------
 " *best-global* command
-:g/gladiolli/#              : display with line numbers (YOU WANT THIS!)
+:g/gladioli/#               : display with line numbers (YOU WANT THIS!)
 :g/fred.*joe.*dick/         : display all lines fred,joe & dick
 :g/\<fred\>/                : display all lines fred but not freddy
 :g/^\s*$/d                  : delete all blank lines
 :g!/^dd/d                   : delete lines not containing string
 :v/^dd/d                    : delete lines not containing string
-:g/joe/,/fred/d             : not line based (very powerfull)
+:g/joe/,/fred/d             : not line based (very powerful)
 :g/fred/,/joe/j             : Join Lines [N]
 :g/-------/.-10,.d          : Delete string & 10 previous lines
 :g/{/ ,/}/- s/\n\+/\r/g     : Delete empty lines but only between {...}
@@ -475,7 +475,7 @@ qQ@qq                             : Make an existing recording q recursive [N]
 "qp                               :display contents of register q (normal mode)
 <ctrl-R>q                         :display contents of register q (insert mode)
 " you can now see recording contents, edit as required
-"qdd                              :put changed contacts back into q
+"qdd                              :put changed contents back into q
 @q                                :execute recording/register q
 " Operating a Recording on a Visual BLOCK (blockwise)
 1) define recording/register
@@ -532,7 +532,7 @@ das                                   : delete a sentence
 :set wildignore=*.o,*.obj,*.bak,*.exe : tab complete now ignores these
 :set shiftwidth=3                     : for shift/tabbing
 :set vb t_vb=".                       : set silent (no beep)
-:set browsedir=buffer                 : Maki GUI File Open use current directory
+:set browsedir=buffer                 : Make GUI File Open use current directory
 ----------------------------------------
 " launching Win IE
 :nmap ,f :update<CR>:silent !start c:\progra~1\intern~1\iexplore.exe file://%:p<CR>
@@ -561,7 +561,7 @@ gvim ftp://www.somedomain.com/index.html # uses netrw.vim
 >a{
 " also
 >% and <%
-==                            : index current line same as line above [N]
+==                            : indent current line same as line above [N]
 ----------------------------------------
 " Redirection & Paste register *
 :redir @*                    : redirect commands to paste buffer
@@ -747,7 +747,7 @@ i<c-r>/
 ----------------------------------------
 " Substituting a Visual area
 " select visual area as usual (:h visual) then type :s/Emacs/Vim/ etc
-:'<,'>s/Emacs/Vim/g               : REMEMBER you dont type the '<.'>
+:'<,'>s/Emacs/Vim/g               : REMEMBER you don't type the '<,'>
 gv                                : Re-select the previous visual area (ULTRA)
 ----------------------------------------
 " inserting line number into file
@@ -767,7 +767,7 @@ qqmnYP`n^Aq                       : in recording q repeat with @q
 " increment existing numbers to end of file (type <c-a> as 5 characters)
 :.,$g/^\d/exe "normal! \<c-a>"
 " advanced incrementing
-http://vim.sourceforge.net/tip_view.php?tip_id=150
+http://vim.wikia.com/wiki/Generating_a_column_of_increasing_numbers
 ----------------------------------------
 " *advanced incrementing* (really useful)
 " put following in _vimrc
