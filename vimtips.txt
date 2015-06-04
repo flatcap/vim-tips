@@ -985,7 +985,7 @@ autocmd BufReadPost *
   \ endif
 ----------------------------------------
 " store text that is to be changed or deleted in register a
-"act<                                 :  Change Till < [N]
+"act<                                 : Change Till < [N]
 ----------------------------------------
 " installing/getting latest version of vim on Linux (replace tiny-vim) [N]
 yum install vim-common vim-enhanced vim-minimal
