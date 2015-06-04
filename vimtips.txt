@@ -541,7 +541,7 @@ das                                   : delete a sentence
 " FTPing from VIM
 :cmap ,r  :Nread ftp://209.51.134.122/public_html/index.html
 :cmap ,w  :Nwrite ftp://209.51.134.122/public_html/index.html
-gvim ftp://www.somedomain.com/index.html # uses netrw.vim
+vim ftp://www.somedomain.com/index.html # uses netrw.vim
 ----------------------------------------
 " appending to registers (use CAPITAL)
 " yank 5 lines into "a" then add a further 5
@@ -596,13 +596,13 @@ Vgq                          : current line
 :silent bufdo !zip proj.zip %:p   : zip all current files
 ----------------------------------------
 " Command line tricks
-gvim -h                    : help
-ls | gvim -                : edit a stream!!
-cat xx | gvim - -c "v/^\d\d\|^[3-9]/d " : filter a stream
-gvim -o file1 file2        : open into a horizontal split (file1 on top, file2 on bottom) [C]
-gvim -O file1 file2        : open into a vertical split (side by side,for comparing code) [N]
+vim -h                     : help
+ls | vim -                 : edit a stream!!
+cat xx | vim - -c "v/^\d\d\|^[3-9]/d " : filter a stream
+vim -o file1 file2         : open into a horizontal split (file1 on top, file2 on bottom) [C]
+vim -O file1 file2         : open into a vertical split (side by side,for comparing code) [N]
 " execute one command after opening file
-gvim.exe -c "/main" joe.c  : Open joe.c & jump to "main"
+vim -c "/main" joe.c       : Open joe.c & jump to "main"
 " execute multiple command on a single file
 vim -c "%s/ABC/DEF/ge | update" file1.c
 " execute multiple command on a group of files
@@ -612,12 +612,12 @@ vim -c "argdo /begin/+1,/end/-1g/^/d | update" *.c
 " Automate editing of a file (Ex commands in convert.vim)
 vim -s "convert.vim" file.c
 " load VIM without .vimrc and plugins (clean VIM) e.g. for HUGE files
-gvim -u NONE -U NONE -N
+vim -u NONE -U NONE -N
 " Access paste buffer contents (put in a script/batch file)
-gvim -c 'normal ggdG"*p' c:/aaa/xp
+vim -c 'normal ggdG"*p' c:/aaa/xp
 " print paste contents to default printer
-gvim -c 's/^/\=@*/|hardcopy!|q!'
-" gvim's use of external grep (win32 or *nix)
+vim -c 's/^/\=@*/|hardcopy!|q!'
+" vim's use of external grep (win32 or *nix)
 :!grep somestring *.php     : creates a list of all matching files [C]
 " use :cn(ext) :cp(rev) to navigate list
 :h grep
@@ -625,8 +625,8 @@ gvim -c 's/^/\=@*/|hardcopy!|q!'
 :vimgrep /keywords/ *.php
 :copen
 ----------------------------------------
-" GVIM Difference Function (Brilliant)
-gvim -d file1 file2        : vimdiff (compare differences)
+" VIM Difference Function (Brilliant)
+vim -d file1 file2         : vimdiff (compare differences)
 dp                         : "put" difference under cursor to other file
 do                         : "get" difference under cursor from other file
 [c                         : jump backwards to changec
@@ -697,7 +697,7 @@ qaq              : empty register "a"
 :h tutor                : VIM Tutor
 <C-]>                   : jump to {keyword} under  cursor in help file [C]
 <C-[>, <C-T>            : Move back & Forth in HELP History
-gvim -h                 : VIM Command Line Help
+vim -h                  : VIM Command Line Help
 :cabbrev h tab help     : open help in a tab [N]
 ----------------------------------------
 " where was an option set
@@ -877,12 +877,12 @@ au BufRead,BufNewFile */Content.IE?/* setfiletype html
 :set ro (Read Only)               : Protect a file from unintentional writes
 ----------------------------------------
 " Sessions (Open a set of files)
-gvim file1.c file2.c lib/lib.h lib/lib2.h : load files for "session"
+vim file1.c file2.c lib/lib.h lib/lib2.h : load files for "session"
 :mksession                        : Make a Session file (default Session.vim)
 :mksession MySession.vim          : Make a Session file named file [C]
 :q
-gvim -S                           : Reload all files (loads Session.vim) [C]
-gvim -S MySession.vim             : Reload all files from named session [C]
+vim -S                            : Reload all files (loads Session.vim) [C]
+vim -S MySession.vim              : Reload all files from named session [C]
 ----------------------------------------
 " tags (jumping to subroutines/functions)
 taglist.vim                       : popular plugin
@@ -991,7 +991,7 @@ autocmd BufReadPost *
 " installing/getting latest version of vim on Linux (replace tiny-vim) [N]
 yum install vim-common vim-enhanced vim-minimal
 ----------------------------------------
-" using gVIM with Cygwin on a Windows PC
+" using VIM with Cygwin on a Windows PC
 if has('win32')
 source $VIMRUNTIME/mswin.vim
 behave mswin
