@@ -76,8 +76,8 @@
 :%s#<\_.\{-1,}>##g          : delete html tags possibly multi-line (non-greedy)
 :%s#.*\(\d\+hours\).*#\1#   : Delete all but memorised string (\1)           [N]
 " parse xml/soap
-%s#><\([^/]\)#>\r<\1#g      : split jumbled up XML file into one tag per line[N]
-%s/</\r&/g                  : simple split of html/xml/soap                  [N]
+:%s#><\([^/]\)#>\r<\1#g     : split jumbled up XML file into one tag per line [N]
+:%s/</\r&/g                 : simple split of html/xml/soap                  [N]
 :%s#<[^/]#\r&#gic           : simple split of html/xml/soap  but not closing tag [N]
 :%s#<[^/]#\r&#gi            : parse on open xml tag                          [N]
 :%s#\[\d\+\]#\r&#g          : parse on numbered array elements [1]           [N]
@@ -96,7 +96,7 @@ ggVGgJ                      : rejoin XML without extra spaces                [N]
 :%s/^\(.*\)\(\n\1\)\+$/\1/  : delete multiple duplicate lines                [N]
 " non-greedy matching \{-}
 :%s/^.\{-}pdf/new.pdf/      : delete to 1st occurence of pdf only (non-greedy)
-%s#^.\{-}\([0-9]\{3,4\}serial\)#\1#gic : delete up to 123serial or 1234serial[N]
+:%s#^.\{-}\([0-9]\{3,4\}serial\)#\1#gic : delete up to 123serial or 1234serial [N]
 " use of optional atom \?
 :%s#\<[zy]\?tbl_[a-z_]\+\>#\L&#gc : lowercase with optional leading characters
 " over possibly many lines
@@ -323,11 +323,11 @@ vEU                         : upper case word
 vE~                         : flip case word
 ggguG                       : lowercase entire file
 " Titlise Visually Selected Text (map for .vimrc)
-vmap ,c :s/\<\(.\)\(\k*\)\>/\u\1\L\2/g<CR>
+:vmap ,c :s/\<\(.\)\(\k*\)\>/\u\1\L\2/g<CR>
 " Title Case A Line Or Selection (better)
-vnoremap <F6> :s/\%V\<\(\w\)\(\w*\)\>/\u\1\L\2/ge<cr>                        [N]
+:vnoremap <F6> :s/\%V\<\(\w\)\(\w*\)\>/\u\1\L\2/ge<cr>                       [N]
 " titlise a line
-nmap ,t :s/.*/\L&/<bar>:s/\<./\u&/g<cr>                                      [N]
+:nmap ,t :s/.*/\L&/<bar>:s/\<./\u&/g<cr>                                     [N]
 " Uppercase first letter of sentences
 :%s/[.!?]\_s\+\a/\U&\E/g
 ----------------------------------------
@@ -381,7 +381,7 @@ q:               : commandline history Window (puts you in full edit mode) (exit
 :ab php                     : list of abbreviations beginning php
 :map ,                      : list of maps beginning ,
 " allow use of F10 for mapping (win32)
-set wak=no                  : :h winaltkeys
+:set wak=no                 : :h winaltkeys
 " For use in Maps
 <CR>                        : carriage Return for maps
 <ESC>                       : Escape
@@ -729,12 +729,12 @@ vim -h                      : Vim Command Line Help
 :%s/$/\^M&/g                : what you'll see where ^M is ONE character
 ----------------------------------------
 " automatically delete trailing Dos-returns,whitespace
-autocmd BufRead * silent! %s/[\r \t]\+$//
-autocmd BufEnter *.php :%s/[ \t\r]\+$//e
+:autocmd BufRead * silent! %s/[\r \t]\+$//
+:autocmd BufEnter *.php :%s/[ \t\r]\+$//e
 ----------------------------------------
 " perform an action on a particular file or file type
-autocmd VimEnter c:/intranet/note011.txt normal! ggVGg?
-autocmd FileType *.pl exec('set fileformats=unix')
+:autocmd VimEnter c:/intranet/note011.txt normal! ggVGg?
+:autocmd FileType *.pl exec('set fileformats=unix')
 ----------------------------------------
 " Retrieving last command line command for copy & pasting into text
 i<c-r>:
@@ -779,7 +779,7 @@ endfunction
 :let I=223
 :'a,'bs/^/\=INC(5)/
 " create a map for INC
-cab viminc :let I=223 \| 'a,'bs/$/\=INC(5)/
+:cab viminc :let I=223 \| 'a,'bs/$/\=INC(5)/
 ----------------------------------------
 " *generate a list of numbers*  23-64
 o23<ESC>qqYp<C-A>q40@q
@@ -817,7 +817,6 @@ function! Del()
     norm dd
   endif
 endfunction
-
 :g/^/ call Del()
 ----------------------------------------
 " Digraphs (non alpha-numerics)
@@ -848,7 +847,7 @@ main_<C-X><C-F>             : include NAME of file in text (insert mode)
 " swap two words
 :vnoremap <C-X> <Esc>`.``gvP``P
 " Swap word with next word
-nmap <silent> gw "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<cr><c-o><c-l>  [N]
+:nmap <silent> gw "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<cr><c-o><c-l> [N]
 ----------------------------------------
 " Convert Text File to HTML
 :runtime! syntax/2html.vim  : convert txt to html
@@ -937,8 +936,8 @@ zfG      : fold everything after this line                                   [N]
 "_dw                        : eg delete word (use blackhole)
 ----------------------------------------
 " pull full path name into paste buffer for attachment to email etc
-nnoremap <F2> :let @*=expand("%:p")<cr> :unix
-nnoremap <F2> :let @*=substitute(expand("%:p"), "/", "\\", "g")<cr> :win32
+:nnoremap <F2> :let @*=expand("%:p")<cr> :unix
+:nnoremap <F2> :let @*=substitute(expand("%:p"), "/", "\\", "g")<cr> :win32
 ----------------------------------------
 " Simple Shell script to rename files w/o leaving vim
 $ vim
