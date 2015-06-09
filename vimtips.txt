@@ -1,5 +1,5 @@
 *vimtips.txt*	For Vim version 7.3.
-----------------------------------------
+------------------------------------------------------------------------------
 " new items marked [N] , corrected items marked                              [C]
 " *best-searching*
 /joe/e                      : cursor set to End of match
@@ -274,7 +274,7 @@ matchit.vim         : % now matches tags <tr><td><script> <?php etc
 " Make it easy to update/reload _vimrc
 :nmap ,s :source $VIM/_vimrc
 :nmap ,v :e $VIM/_vimrc
-:e $MYVIMRC                 : edits your _vimrc whereever it might be        [N]
+:e $MYVIMRC                 : edits your _vimrc wherever it might be         [N]
 " How to have a variant in your .vimrc for different PCs                     [N]
 if $COMPUTERNAME == "NEWPC"
   ab mypc vista
@@ -399,7 +399,7 @@ q:               : commandline history Window (puts you in full edit mode) (exit
 " for your .vimrc
 :cab ,f :for i in range(1, 12) \| execute("map <F".i.">") \| endfor
 " chain commands in abbreviation
-:cabbrev vrep tabe class.inc \| tabe report.php   ## chain commands          [N]
+:cabbrev vrep tabe class.inc \| tabe report.php   : chain commands           [N]
 ----------------------------------------
 " Simple PHP debugging display all variables yanked into register a
 :iab phpdb exit("<hr>Debug <C-R>a  ");
