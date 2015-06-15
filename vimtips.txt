@@ -1,12 +1,12 @@
 *vimtips.txt*	For Vim version 7.3.
 ------------------------------------------------------------------------------
-" new items marked [N] , corrected items marked                              [C]
+" new items marked [N] , corrected items marked [C]
 " *best-searching*
 /joe/e                      : cursor set to End of match
 3/joe/e+1                   : find 3rd joe cursor set to End of match plus 1 [C]
 /joe/s-2                    : cursor set to Start of match minus 2
 /joe/+3                     : find joe move cursor 3 lines down
-/^joe.*fred.*bill/          : find joe AND fred AND Bill (Joe at start of line)
+/^joe.*fred.*bill/          : find joe AND fred AND Bill (joe at start of line)
 /^[A-J]/                    : search for lines beginning with one or more A-J
 /begin\_.*end               : search over possible multiple lines
 /fred\_s*joe/               : any whitespace including newline               [C]
@@ -193,8 +193,8 @@ ggVGgJ                      : rejoin XML without extra spaces                [N]
 :'a,'bg/str1/s/str1/&&&/|mo/str2/
 :%norm jdd                  : delete every other line
 " incrementing numbers (type <c-a> as 5 characters)
-:.,$g/^\d/exe "norm! \<c-a>": increment numbers
-:'a,'bg/\d\+/norm! ^A       : increment numbers
+:.,$g/^\d/exe "norm! \<c-a>"  : increment numbers
+:'a,'bg/\d\+/norm! ^A         : increment numbers
 " storing glob results (note must use APPEND) you need to empty reg a first with qaq.
 " save results to a register/paste buffer
 :g/fred/y A                 : append all lines fred to register a
@@ -337,7 +337,7 @@ ga                              : display hex,ascii value of char under cursor
 ggVGg?                          : rot13 whole file
 ggg?G                           : rot13 whole file (quicker for large file)
 :8 | normal VGg?                : rot13 from line 8
-:normal 10GVGg?                 : rot13 from line 8
+:normal 8GVGg?                  : rot13 from line 8
 <C-A>,<C-X>                     : increment,decrement number under cursor
                                   win32 users must remap CTRL-A
 <C-R>=5*5                       : insert 25 into text (mini-calculator)
@@ -450,7 +450,7 @@ u@.                         : execute command JUST typed in
 :help filename-modifiers
 :e!                         : return to unmodified file
 :w c:/aaa/%                 : save file elsewhere
-:e #                        : edit alternative file (also cntrl-^)
+:e #                        : edit alternative file (also CTRL-^)
 :rew                        : return to beginning of edited files list (:args)
 :brew                       : buffer rewind
 :sp fred.txt                : open fred.txt into a split
@@ -551,7 +551,7 @@ vim ftp://www.somedomain.com/index.html : uses netrw.vim
 [I                      : show lines matching word under cursor <cword> (super)
 ----------------------------------------
 " Conventional Shifting/Indenting
-:'a,'b>>
+:'a,'b>
 " visual shifting (builtin-repeat)
 :vnoremap < <gv
 :vnoremap > >gv
@@ -572,7 +572,7 @@ vim ftp://www.somedomain.com/index.html : uses netrw.vim
 " yank to paste buffer (ex mode)
 :'a,'by*                    : Yank range into paste
 :%y*                        : Yank whole buffer into paste
-:.y*                        : Yank Current line to paster
+:.y*                        : Yank Current line to paste
 " filter non-printable characters from the paste buffer
 " useful when pasting from some gui application
 :nmap <leader>p :let @* = substitute(@*,'[^[:print:]]','','g')<cr>"*p
@@ -628,7 +628,7 @@ vim -c 's/^/\=@*/|hardcopy!|q!'
 vim -d file1 file2          : vimdiff (compare differences)
 dp                          : "put" difference under cursor to other file
 do                          : "get" difference under cursor from other file
-[c                          : jump backwards to changec
+[c                          : jump backwards to change
 ]c                          : jump forwards to change
 :set diffopt+=icase         : switch case sensitivity on and off
 " complex diff parts of same file                                            [N]
@@ -756,7 +756,7 @@ gv                          : Re-select the previous visual area (ULTRA)
 ----------------------------------------
 " *numbering lines Vim way*
 :set number                 : show line numbers
-:map <F12> :set number!<CR> : Show linenumbers flip-flop
+:map <F12> :set number!<CR> : show line numbers flip-flop
 :%s/^/\=strpart(line('.')."        ",0,&ts)
 " numbering lines (need Perl on PC) starting from arbitrary number
 :'a,'b!perl -pne 'BEGIN{$a=223} substr($_,2,0)=$a++'
@@ -838,7 +838,7 @@ yl/<C-R>"                         :
 ----------------------------------------
 " All file completions grouped (for example main_c.c)
 :e main_<tab>               : tab completes
-gf                          : open file under cursor  (normal)
+gf                          : open file under cursor (normal)
 main_<C-X><C-F>             : include NAME of file in text (insert mode)
 ----------------------------------------
 " Complex Vim
@@ -850,7 +850,7 @@ main_<C-X><C-F>             : include NAME of file in text (insert mode)
 :nmap <silent> gw "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<cr><c-o><c-l> [N]
 ----------------------------------------
 " Convert Text File to HTML
-:runtime! syntax/2html.vim  : convert txt to html
+:runtime! syntax/2html.vim  : convert text to html
 :h 2html
 ----------------------------------------
 " Vim has internal grep
@@ -910,7 +910,7 @@ zo                          : open fold
 zc                          : re-close fold
 " also visualise a section of code then type zf                              [N]
 :help folding
-zfG      : fold everything after this line                                   [N]
+zfG                         : fold everything after this line                [N]
 ----------------------------------------
 " displaying "non-asciis"
 :set list
