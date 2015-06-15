@@ -1,0 +1,26 @@
+Command line mode
+
+commands
+	s - substitute
+	g - global
+	v - vglobal (not global)
+	y - yank
+	! - pipe
+
+ranges
+	x,y - range
+	z - line
+
+	% all lines
+	line number
+	marks
+		letters
+		<> visual
+	current line
+	$ last line
+	/ search
+
+offsets
+	+ plus
+	- minus
+
