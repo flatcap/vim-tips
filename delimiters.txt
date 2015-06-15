@@ -1,0 +1,11 @@
+search
+substitute
+
+%s/old/new/
+
+delimiter
+	non-alphabetic
+	Not \ " or |
+
+:%s+/+//+
+
