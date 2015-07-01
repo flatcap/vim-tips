@@ -56,7 +56,7 @@
 /\v^((tongue)@!.)*nose((tongue)@!.)*$
 /.*nose.*\&^\%(\%(tongue\)\@!.\)*$
 :v/tongue/s/nose/&/gic
-'a,'bs/extrascost//gc       : trick: restrict search to between markers (answer n) [N]
+:%s/extrascost//gc          : trick: search using a range (answer n)         [N]
 ----------------------------------------
 " *best-substitution*
 :%s/fred/joe/igc            : general substitute command
@@ -65,33 +65,33 @@
 :%s/\r//g                   : Delete DOS returns ^M
 " Is your Text File jumbled onto one line? use following
 :%s/\r/\r/g                 : Turn DOS returns ^M into real returns
-:%s=  *$==                  : delete end of line blanks
-:%s= \+$==                  : Same thing
-:%s#\s*\r\?$##              : Clean both trailing spaces AND DOS returns
-:%s#\s*\r*$##               : same thing
+:%s/  *$//                  : delete end of line blanks
+:%s/ \+$//                  : Same thing
+:%s/\s*\r\?$//              : Clean both trailing spaces AND DOS returns
+:%s/\s*\r*$//               : same thing
 " deleting empty lines
 :%s/^\n\{3}//               : delete blocks of 3 empty lines
 :%s/^\n\+/\r/               : compressing empty lines
-:%s#<[^>]\+>##g             : delete html tags, leave text (non-greedy)
-:%s#<\_.\{-1,}>##g          : delete html tags possibly multi-line (non-greedy)
-:%s#.*\(\d\+hours\).*#\1#   : Delete all but memorised string (\1)           [N]
+:%s/<[^>]\+>//g             : delete html tags, leave text (non-greedy)
+:%s/<\_.\{-1,}>//g          : delete html tags possibly multi-line (non-greedy)
+:%s/.*\(\d\+hours\).*/\1/   : Delete all but memorised string (\1)           [N]
 " parse xml/soap
 :%s#><\([^/]\)#>\r<\1#g     : split jumbled up XML file into one tag per line [N]
 :%s/</\r&/g                 : simple split of html/xml/soap                  [N]
 :%s#<[^/]#\r&#gic           : simple split of html/xml/soap  but not closing tag [N]
 :%s#<[^/]#\r&#gi            : parse on open xml tag                          [N]
-:%s#\[\d\+\]#\r&#g          : parse on numbered array elements [1]           [N]
+:%s/\[\d\+\]/\r&/g          : parse on numbered array elements [1]           [N]
 ggVGgJ                      : rejoin XML without extra spaces                [N]
 " Vim Power Substitute
-:'a,'bg/fred/s/dick/joe/igc : VERY USEFUL
+:g/fred/s/dick/joe/igc      : VERY USEFUL
 " duplicating columns
-:%s= [^ ]\+$=&&=            : duplicate end column
-:%s= \f\+$=&&=              : Dupicate filename
-:%s= \S\+$=&&               : usually the same
+:%s/ [^ ]\+$/&&/            : duplicate end column
+:%s/ \f\+$/&&/              : Dupicate filename
+:%s/ \S\+$/&&/              : usually the same
 " memory
-:%s#example#& = &#gic       : duplicate entire matched string                [N]
+:%s/example/& = &/gic       : duplicate entire matched string                [N]
 :%s#.*\(tbl_\w\+\).*#\1#    : extract list of all strings tbl_* from text   [NC]
-:s/\(.*\):\(.*\)/\2 : \1/   : reverse fields separated by :
+:%s/\(.*\):\(.*\)/\2 : \1/  : reverse fields separated by :
 :%s/^\(.*\)\n\1$/\1/        : delete duplicate lines
 :%s/^\(.*\)\(\n\1\)\+$/\1/  : delete multiple duplicate lines                [N]
 " non-greedy matching \{-}
@@ -111,17 +111,17 @@ ggVGgJ                      : rejoin XML without extra spaces                [N]
 :%s/a/but/gie|:update|:next : then use @: to repeat
 " ORing
 :%s/goat\|cow/sheep/gc      : ORing (must break pipe)
-:'a,'bs#\[\|\]##g           : remove [] from lines between markers a and b   [N]
+:%s/\[\|\]//g               : remove [] from lines                           [N]
 :%s/\v(.*\n){5}/&\r         : insert a blank line every 5 lines              [N]
 " Calling a Vim function
-:s/__date__/\=strftime("%c")/ : insert datestring
+:%s/__date__/\=strftime("%c")/                : insert datestring
 :inoremap \zd <C-R>=strftime("%d%b%y")<CR>    : insert date eg 31Jan11       [N]
 " Working with Columns sub any str1 in col3
 :%s:\(\(\w\+\s\+\)\{2}\)str1:\1str2:
 " Swapping first & last column (4 columns)
 :%s:\(\w\+\)\(.*\s\+\)\(\w\+\)$:\3\2\1:
 " format a mysql query
-:%s#\<from\>\|\<where\>\|\<left join\>\|\<\inner join\>#\r&#g
+:%s/\<from\>\|\<where\>\|\<left join\>\|\<\inner join\>/\r&/g
 " filter all form elements into paste register
 :redir @*|sil exec 'g#<\(input\|select\|textarea\|/\=form\)\>#p'|redir END
 :nmap ,z :redir @*<Bar>sil exec 'g@<\(input\<Bar>select\<Bar>textarea\<Bar>/\=form\)\>@p'<Bar>redir END<CR>
@@ -132,15 +132,15 @@ ggVGgJ                      : rejoin XML without extra spaces                [N]
 " increment numbers by 6 on certain lines only
 :g/loc\|function/s/\d/\=submatch(0)+6/
 " better
-:%s#txtdev\zs\d#\=submatch(0)+1#g
+:%s/txtdev\zs\d/\=submatch(0)+1/g
 :h /\zs
 " increment only numbers gg\d\d  by 6 (another way)
 :%s/\(gg\)\@<=\d\+/\=submatch(0)+6/
 :h zero-width
 " rename a string with an incrementing number
-:let i=10 | 'a,'bg/Abc/s/yy/\=i/ |let i=i+1 # convert yy to 10,11,12 etc
+:let i=10 | g/Abc/s/yy/\=i/ |let i=i+1 # convert yy to 10,11,12 etc
 " as above but more precise
-:let i=10 | 'a,'bg/Abc/s/xx\zsyy\ze/\=i/ |let i=i+1 # convert xxyy to xx11,xx12,xx13
+:let i=10 | g/Abc/s/xx\zsyy\ze/\=i/ |let i=i+1 # convert xxyy to xx11,xx12,xx13
 " find replacement text, put in memory, then use \zs to simplify substitute
 :%s/"\([^.]\+\).*\zsxx/\1/
 " Pull word under cursor into LHS of a substitute
@@ -148,15 +148,15 @@ ggVGgJ                      : rejoin XML without extra spaces                [N]
 " Pull visually highlighted text into LHS of a substitute
 :vmap <leader>z :<C-U>%s/\<<c-r>*\>/
 " substitute singular or plural
-:'a,'bs/bucket\(s\)*/bowl\1/gic                                              [N]
+:%s/bucket\(s\)*/bowl\1/gic                                              [N]
 ----------------------------------------
 " all following performing similar task, substitute within substitution
 " Multiple single character substitution in a portion of line only
 :%s,\(all/.*\)\@<=/,_,g     : replace all / with _ AFTER "all/"
 " Same thing
-:s#all/\zs.*#\=substitute(submatch(0), '/', '_', 'g')#
+:%s/all/\zs.*/\=substitute(submatch(0), '/', '_', 'g')/
 " Substitute by splitting line, then re-joining
-:s#all/#&^M#|s#/#_#g|-j!
+:%s#all/#&^M#|s#/#_#g|-j!
 " Substitute inside substitute
 :%s/.*/\='cp '.submatch(0).' all/'.substitute(submatch(0),'/','_','g')/
 ----------------------------------------
